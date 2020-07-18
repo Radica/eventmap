@@ -1,0 +1,23 @@
+.DS_Store
+*.log
+
+coverage
+node_modules
+public/*
+!public/favicon.ico
+
+# vim-related
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+.vimrc
+*~
+
+# this project
+notes
+wordpress
+
+.env
+.env.dev

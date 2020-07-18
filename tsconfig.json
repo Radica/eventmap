@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "outDir": "public/assets",
+        "sourceMap": true,
+        "noImplicitAny": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "jsx": "react"
+    }
+}

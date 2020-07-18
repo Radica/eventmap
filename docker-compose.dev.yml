@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  app:
+    expose:
+      - "3000"
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/srv/app:cached
+      - /srv/app/node_modules
+    entrypoint: ['npm', 'run', 'dev']
+
+  wordpress:
+    ports:
+      - "4000:80"

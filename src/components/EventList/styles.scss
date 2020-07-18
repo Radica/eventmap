@@ -1,0 +1,27 @@
+@import '../../theme/variables';
+
+.EventList {
+    display: flex !important;
+    width: 400px;
+    height: 100%;
+    background-color: blue;
+    flex-direction: column;
+
+    @media (max-width: 700px) {
+      width: 100%;
+    }
+
+    color: $color-white;
+
+    ul {
+        padding-left: 17px;
+
+        li {
+            margin-bottom: 0.5em;
+        }
+    }
+
+    a {
+        color: $color-white;
+    }
+}
