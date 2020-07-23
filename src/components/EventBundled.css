@@ -1,0 +1,85 @@
+.EventBundledLoc {
+    display: flex;
+    padding: 10px;
+    background-color: #fff4ed;
+}
+
+.EventBundledLoc img {
+    width: 20px;
+    height: 20px;
+    opacity: 0.6;
+    margin-right: 5px;
+}
+
+.EventBundledLoc div {
+    flex-grow: 1;
+    flex-basis: 0;
+}
+
+.EventBundledLoc div h1{
+    font-size: 18px;
+    letter-spacing: 0.6px;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.EventBundledLoc div h2 {
+    font-size: 13px;
+}
+
+.EventBundledItems {
+    max-height: 240px;
+    overflow: auto;
+}
+
+.EventBundledItem {
+    margin-left: 20px;
+    padding: 5px 10px 5px;
+}
+
+.EventBundledItem .event-list-item-date .event-list-date-view {
+    margin-top: 0;
+    width: 50px;
+
+    padding-top: 9px;
+    padding-bottom: 0;
+
+    line-height: 13px;
+}
+.EventBundledItem .event-list-item-date {
+    width: 55px;
+}
+
+.EventBundledItem .event-list-date-data {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.EventBundledItem .event-list-day-data {
+    font-size: 10px;
+    font-weight: 400;
+}
+
+.EventBundledItem .event-list-month-data {
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+.EventListItemEventType {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 0;
+}
+.EventBundledItem a.event-list-item-cta-btn {
+    background-color: transparent;
+    border-color: var(--blue);
+    border-width: 2px;
+    border-style: solid;
+    color: var(--blue);
+    text-decoration: none;
+    margin-top: 5px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    font-weight: 800;
+}

@@ -1,0 +1,125 @@
+.SearchContainer {
+    background-color: var(--bluish-gray);
+    border-bottom: 1px solid var(--gray);
+    font-family: var(--sans-serif);
+}
+
+.SearchViewport {
+    padding: 10px;
+    position: relative;
+}
+
+.SearchForm {
+    display: flex;
+    align-items: stretch;
+
+    .search-input {
+      position: relative;
+      flex-grow: 1;
+    }
+}
+
+.SearchText {
+    display: block;
+    width: 100%;
+    padding: 5px 10px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--dark-gray);
+    background-color: #fff;
+    background-image: none;
+    background-clip: padding-box;
+    border: 1px solid var(--lightgray);
+    border-radius: 4px 0 0 4px;
+    height: 25px;
+    text-align: center;
+    font-weight: 800;
+
+    font-family: var(--sans-serif);
+}
+
+.SearchButton {
+    border-radius: 0 4px 4px 0;
+    background-color: var(--blue);
+    color: white;
+    padding: 6px 10px 4px;
+    text-decoration: none;
+    font-size: 12px;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    display: flex;
+    border: 1px solid var(--blue);
+    font-family: var(--sans-serif);
+
+    &:hover {
+        color: white;
+    }
+}
+
+.FilterForm ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0;
+    margin-top: 5px;
+    padding: 0;
+    list-style: none;
+}
+
+.FilterForm ul li {
+    margin: 2px 2px 2px 0;
+    border-radius: 2px;
+    border: 1px solid var(--lightgray);
+}
+
+
+.FilterForm ul li label {
+    font-size: 10px;
+    text-transform: uppercase;
+    font-family: var(--sans-serif);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+}
+
+.FilterForm ul li label img {
+    height: 14px;
+    margin-right: 4px;
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);
+    opacity: 0.5;
+}
+
+.FilterForm ul li input {
+    display: none;
+}
+
+.FilterForm ul li input:checked + label {
+    /* color: blue; */
+    font-weight: 600;
+    background-color: var(--blue);
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+.FilterForm ul li input + label {
+    padding: 4px;
+    color: gray;
+}
+.FilterForm ul li input + label .event-check {
+    display: none
+}
+
+.FilterForm ul li input:checked + label .event-check {
+    display: block;
+}
+
+.FilterForm ul li input:checked + label img {
+    filter: grayscale(0%);
+    -webkit-filter: grayscale(0%);
+    opacity: 1;
+}

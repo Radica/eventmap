@@ -10,7 +10,8 @@ import {
 export const initialState: HomeState = {
     readyStatus: 'invalid',
     err: null,
-    events: [],
+    eventTypes: [],
+    eventsData: [],
 };
 
 export default (state = initialState, action: GetEventsAction) => {
@@ -24,13 +25,19 @@ export default (state = initialState, action: GetEventsAction) => {
             return {
                 ...state,
                 readyStatus: 'success',
-                events: action.payload.data.map((mapEntity) => ({
+                eventTypes: Array.from(
+                    action.payload.data.reduce((memo, mapEntity) => {
+                        memo.add(mapEntity.acf.map_content_type);
+                        return memo;
+                    }, new Set())
+                ),
+                eventsData: action.payload.data.map((mapEntity) => ({
                     id: mapEntity.id,
                     title: mapEntity.title.rendered,
                     content: mapEntity.content.rendered.trim(),
                     contentType: mapEntity.acf.map_content_type,
-                    lat: Number(mapEntity.acf.latitude),
-                    long: Number(mapEntity.acf.longitude),
+                    latitude: Number(mapEntity.acf.latitude),
+                    longitude: Number(mapEntity.acf.longitude),
                 })),
             };
         case GET_EVENTS_FAIL:

@@ -9,7 +9,8 @@ import loadable from '@loadable/component';
 import { Loading, ErrorBoundary } from '../../components';
 
 // @ts-ignore
-import AsyncEventMap from '../../components/EventMap';
+import AsyncEventMap from '../../containers/AsyncMegamap';
+// import AsyncEventMap from '../../components/EventMap';
 
 const Home = loadable(() => import('./Home'), {
     fallback: <Loading />,

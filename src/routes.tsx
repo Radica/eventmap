@@ -1,4 +1,4 @@
-import eventsAction from './actions';
+import * as eventsAction from './actions/events';
 import App from './app';
 import { asyncHome, NotFound } from './pages';
 

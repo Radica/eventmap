@@ -33,5 +33,6 @@ export const fetchEventsIfNeeded = (): ThunkAction => (
     /* istanbul ignore next */
     if (shouldFetchEvents(getState())) return dispatch(fetchEvents());
     /* istanbul ignore next */
+    console.log('wasnt needed');
     return null;
 };

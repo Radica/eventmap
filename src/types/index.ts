@@ -8,15 +8,29 @@ export type Event = {
     title: string;
     content: string;
     contentType: string;
-    lat: number;
-    long: number;
+    latitude: number;
+    longitude: number;
 };
 
 // Reducers
 export interface HomeState {
     readyStatus: HomeReadyStatus;
     err: any;
-    events: Array<Event>;
+    eventTypes: Array<string>;
+    eventsData: Array<Event>;
+}
+
+export interface SearchState {
+    searchQuery: string;
+    activeFilters: Array<string>;
+    zoom: number;
+    center: [number, number];
+    bounds: [number, number];
+    searchResults: Array<any>;
+    chosenResult: any;
+    zipcodes: Array<any>;
+    chosenZipcode: any;
+    sourceParam: any;
 }
 
 export interface AppState {
@@ -31,6 +45,13 @@ export const GET_EVENTS = 'GET_EVENTS';
 export const GET_EVENTS_REQUEST = 'GET_EVENTS_REQUEST';
 export const GET_EVENTS_SUCCESS = 'GET_EVENTS_SUCCESS';
 export const GET_EVENTS_FAIL = 'GET_EVENTS_FAIL';
+
+export const SEARCH_SET_FILTERS = 'SEARCH_SET_FILTERS';
+export const SEARCH_SET_RESULTS = 'SEARCH_SET_RESULTS';
+export const SEARCH_ERROR_RESULTS = 'SEARCH_ERROR_RESULTS';
+export const SEARCH_SET_SELECTED_RESULT = 'SEARCH_SET_SELECTED_RESULT';
+export const SEARCH_SET_QUERY = 'SEARCH_SET_QUERY';
+export const EVENTS_LOAD_EVENTS = 'EVENTS_LOAD_EVENTS';
 
 type AxiosRequestPayload = {
     request: {
