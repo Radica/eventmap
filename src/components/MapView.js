@@ -63,6 +63,11 @@ class MapView extends React.Component {
             return activeFilters.includes(event.contentType);
         });
 
+        if (events.length === 0) {
+            handleClosePopup();
+            return null;
+        }
+
         return (
             <Popup
                 coordinates={[
