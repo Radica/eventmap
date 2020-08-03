@@ -4,6 +4,6 @@ import styles from './styles.scss';
 
 export default () => (
     <div className={styles.Loading}>
-        <p>Loading...</p>
+        <div className={`${styles.ProgressBar} ${styles.Stripes}`} />
     </div>
 );

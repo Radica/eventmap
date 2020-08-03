@@ -13,15 +13,21 @@ import loadable from '@loadable/component';
 import Loading from './Loading';
 import ErrorBoundary from './ErrorBoundary';
 
+import styles from './SearchView.css';
+
 const SearchView = loadable(() => import('./SearchView'), {
     ssr: false,
-    fallback: <Loading />,
+    fallback: (
+        <div
+            className={`${styles.SearchContainer} ${styles.SearchContainerLoading}`}
+        >
+            <Loading />
+        </div>
+    ),
 });
 
 export default (props) => (
     <ErrorBoundary>
-        {/* <SearchView {...props} /> */}
         <SearchView {...props} />
-        {/* <Loading /> */}
     </ErrorBoundary>
 );

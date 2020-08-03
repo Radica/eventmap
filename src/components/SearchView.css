@@ -2,6 +2,9 @@
     background-color: var(--bluish-gray);
     font-family: var(--sans-serif);
 }
+.SearchContainerLoading {
+    height: 93px;
+}
 
 .SearchViewport {
     padding: 10px;
