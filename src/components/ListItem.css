@@ -1,8 +1,4 @@
 .EventListItem {
-    border-top: 1px dashed var(--lightgray);
+    border-bottom: 1px dashed var(--lightgray);
     font-family: var(--sans-serif);
-}
-
-.EventListItem:first-child {
-    border-top: 0;
 }
