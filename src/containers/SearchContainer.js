@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import SearchView from '../components/SearchView';
+import AsyncSearchView from '../components/SearchViewAsync';
 import searchAction from '../actions/search';
 
 class SearchContainer extends React.Component {
@@ -107,7 +107,7 @@ class SearchContainer extends React.Component {
         const { searchQuery } = this.state;
 
         return (
-            <SearchView
+            <AsyncSearchView
                 activeFilters={activeFilters}
                 eventTypes={eventTypes}
                 handleFilterChange={this.handleFilterChange}

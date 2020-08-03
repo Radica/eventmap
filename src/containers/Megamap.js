@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import ListArea from '../components/ListArea';
 import MapArea from '../components/MapArea';
 import ListContainer from './ListContainer';
-import AsyncSearchContainer from './AsyncSearchContainer';
+import SearchContainer from './SearchContainer';
 import AsyncMapContainer from './AsyncMapContainer';
 
 import { fetchEventsIfNeeded } from '../actions/events';
@@ -26,7 +26,7 @@ class Megamap extends React.Component {
         return (
             <>
                 <ListArea>
-                    <AsyncSearchContainer history={history} />
+                    <SearchContainer history={history} />
                     <ListContainer history={history} />
                 </ListArea>
                 <MapArea>
