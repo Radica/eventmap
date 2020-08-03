@@ -1,5 +1,4 @@
 .EventListItemContainer {
-    display: flex;
     padding: 20px;
 }
 
@@ -12,11 +11,6 @@
     text-decoration: none;
     color: var(--darkgray);
     font-weight: bold;
-}
-
-.EventListItemInfo {
-    flex-grow: 1;
-    flex-basis: 0;
 }
 
 .EventInformation p {
@@ -50,22 +44,6 @@
     color: #333;
     letter-spacing: 1px;
     text-shadow: 0px 1px 1px rgba(0,0,0,0.2);
-}
-
-.EventListTimeData,
-.EventListItemDesc span {
-    margin-top: 2px;
-}
-.EventListItemDesc {
-    font-size: 12px;
-    line-height: 14px;
-    margin-bottom: 5px;
-    margin-top: 5px;
-    display: flex;
-}
-.EventListItemDesc span {
-    flex-grow: 1;
-    flex-basis: 0;
 }
 
 .EventListItemEventType {
@@ -144,38 +122,4 @@
 #maps-for-all-content .event-list-item-container .event-list-item-cta a.event-list-item-cta-btn:hover {
     color: white;
     background-color: var(--blue);
-}
-
-.EventListItemContent {
-    display: block;
-}
-
-.EventListItemSingleContent {
-    --content-max-height: 100px;
-    position: relative;
-    display: block;
-    max-height: var(--content-max-height);
-    overflow: hidden;
-}
-.EventListItemSingleContent *:last-child {
-    margin-bottom: 0;
-}
-.EventListItemSingleContent::after {
-    content: "";
-    display: block;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    /* Max out at 50px height, since the parent is max-height 200px.
-     * This means a parent less than 200px is fully viewable without this fade-out element.
-     */
-    height: calc(100% - (calc(var(--content-max-height) - 50px)));
-    pointer-events: none;
-    background: linear-gradient(180deg, transparent 0%, whitesmoke 90%);
-}
-
-.EventListItemSingleContent img,
-.EventListItemSingleContent figure {
-    display: none;
 }

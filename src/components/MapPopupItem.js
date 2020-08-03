@@ -1,10 +1,7 @@
 import React from 'react';
-// import Icon from 'react-fontawesome';
 import EventBundled from './EventBundled';
 
 import styles from './MapPopupItem.css';
-
-// <Icon name='close' style={{color: 'black'}} />
 
 export default ({ sourceParam, popup, handleClosePopup }) => (
     <div className={styles.PopupItem}>
