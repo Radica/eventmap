@@ -1,6 +1,6 @@
 .EventListContainer {
     flex-grow: 1;
-    background-color: white;
+    background-color: var(--event-list-background);
     overflow: auto;
     display: flex;
     -webkit-overflow-scrolling: touch;

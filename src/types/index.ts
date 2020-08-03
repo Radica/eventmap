@@ -6,6 +6,7 @@ type HomeReadyStatus = 'request' | 'success' | 'failure' | 'invalid';
 export type Event = {
     id: number;
     title: string;
+    url: string;
     content: string;
     contentType: string;
     latitude: number;
@@ -64,6 +65,7 @@ export type GetEventsPayload = {
     title: {
         rendered: string;
     };
+    link: string;
     content: {
         rendered: string;
     };

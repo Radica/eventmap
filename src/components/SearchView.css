@@ -65,14 +65,13 @@
     flex-direction: row;
     flex-wrap: wrap;
     margin: 0;
-    margin-top: 5px;
-    padding: 0;
+    padding: 0 10px 5px;
     list-style: none;
 }
 
 .FilterForm ul li {
     margin: 2px 2px 2px 0;
-    border-radius: 3px;
+    border-radius: 4px;
     border: 1px solid var(--lightgray);
 }
 
@@ -128,11 +127,11 @@
 }
 
 .FilterForm .EventFilterIconAction {
-    background-color: #e35c04;
+    background-color: var(--event-type-action);
 }
 
 .FilterForm .EventFilterIconStory {
-    background-color: #2422bb;
+    background-color: var(--event-type-story);
 }
 
 .FilterForm ul li input:checked + label .EventFilterIcon {

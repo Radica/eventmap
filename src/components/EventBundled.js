@@ -1,6 +1,6 @@
 import React from 'react';
+
 import EventSingle from './EventSingle.js';
-import MarkerIcon from '../assets/images/marker.png';
 
 import styles from './EventBundled.css';
 

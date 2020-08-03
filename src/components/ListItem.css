@@ -1,17 +1,8 @@
 .EventListItem {
-    /* border-bottom: 1px dashed gray; */
+    border-top: 1px dashed var(--lightgray);
     font-family: var(--sans-serif);
-    border-left: 4px solid gray;
-    margin-top: 5px;
-    margin-bottom: 3px;
-    background-color: whitesmoke;
-    width: calc(100% - 5px);
 }
 
 .EventListItem:first-child {
-    margin-top: 0;
-}
-
-.EventListItem:last-child {
-    margin-bottom: 0;
+    border-top: 0;
 }

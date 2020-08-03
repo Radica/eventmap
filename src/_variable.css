@@ -6,10 +6,13 @@
     --lightgray: lightgray;
     --gray: #ccced0;
     --bluish-gray: #eaedef;
+    --event-list-background: whitesmoke;
     --darkgray: rgba(21, 35, 45, 0.8);
     --sans-serif: 'Montserrat', sans-serif;
     --light-blue: rgba(68,0,153,.1);
     --highlight: #ff430f;
+    --event-type-story: #2422bb;
+    --event-type-action: #e35c04;
 }
 
 #maps-for-all-content .btn {

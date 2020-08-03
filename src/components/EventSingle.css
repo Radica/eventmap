@@ -1,17 +1,17 @@
 .EventListItemContainer {
-    padding: 20px;
     display: flex;
+    padding: 20px;
 }
 
 .EventListItemTitle {
+    margin: 0;
     margin-top: 5px;
-    /* margin-bottom: 10px; */
 }
 
 .EventListItemTitle a {
     text-decoration: none;
-    color: var(--blue);
-    font-weight: 600;
+    color: var(--darkgray);
+    font-weight: bold;
 }
 
 .EventListItemInfo {
@@ -32,7 +32,6 @@
     width: 65px;
 }
 .EventListDateView {
-    /* border: 1px solid var(--darkgray); */
     padding: 5px;
     font-weight: 600;
     margin-right: 10px;
@@ -43,12 +42,6 @@
     align-items: flex-start;
     text-align: center;
     padding-top: 7px;
-}
-
-#maps-for-all-content .event-list-item-container .event-list-item-description {
-    font-size: 14px;
-    margin-top: 15px;
-    margin-bottom: 10px;
 }
 
 .EventListDayData {
@@ -73,6 +66,26 @@
 .EventListItemDesc span {
     flex-grow: 1;
     flex-basis: 0;
+}
+
+.EventListItemEventType {
+    display: inline-block;
+    margin-top: 0;
+    background-color: var(--lightgray);
+    border: 1px solid var(--lightgray);
+    border-radius: 4px;
+    padding: 4px 5px;
+    letter-spacing: 0.5px;
+    line-height: 1;
+    text-transform: uppercase;
+    font-size: 10px;
+    color: var(--darkgray);
+}
+.EventListItemEventTypeStory {
+    color: var(--event-type-story);
+}
+.EventListItemEventTypeAction {
+    color: var(--event-type-action);
 }
 
 .EventListIcon {
@@ -131,4 +144,38 @@
 #maps-for-all-content .event-list-item-container .event-list-item-cta a.event-list-item-cta-btn:hover {
     color: white;
     background-color: var(--blue);
+}
+
+.EventListItemContent {
+    display: block;
+}
+
+.EventListItemSingleContent {
+    --content-max-height: 100px;
+    position: relative;
+    display: block;
+    max-height: var(--content-max-height);
+    overflow: hidden;
+}
+.EventListItemSingleContent *:last-child {
+    margin-bottom: 0;
+}
+.EventListItemSingleContent::after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /* Max out at 50px height, since the parent is max-height 200px.
+     * This means a parent less than 200px is fully viewable without this fade-out element.
+     */
+    height: calc(100% - (calc(var(--content-max-height) - 50px)));
+    pointer-events: none;
+    background: linear-gradient(180deg, transparent 0%, whitesmoke 90%);
+}
+
+.EventListItemSingleContent img,
+.EventListItemSingleContent figure {
+    display: none;
 }

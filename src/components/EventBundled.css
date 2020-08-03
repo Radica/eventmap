@@ -65,12 +65,6 @@
     letter-spacing: 1px;
 }
 
-.EventListItemEventType {
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-top: 0;
-}
 .EventBundledItem a.event-list-item-cta-btn {
     background-color: transparent;
     border-color: var(--blue);

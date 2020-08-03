@@ -34,6 +34,7 @@ export default (state = initialState, action: GetEventsAction) => {
                 eventsData: action.payload.data.map((mapEntity) => ({
                     id: mapEntity.id,
                     title: mapEntity.title.rendered,
+                    url: mapEntity.link,
                     content: mapEntity.content.rendered.trim(),
                     contentType: mapEntity.acf.map_content_type,
                     latitude: Number(mapEntity.acf.latitude),
