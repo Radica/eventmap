@@ -24,8 +24,8 @@
 
 .SearchText {
     display: block;
-    width: 100%;
-    max-width: none;
+    width: 100% !important;
+    max-width: none !important;
     line-height: 1.5;
     color: var(--dark-gray);
     background-color: #fff;
