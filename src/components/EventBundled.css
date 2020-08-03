@@ -28,7 +28,7 @@
 }
 
 .EventBundledItems {
-    max-height: 240px;
+    max-height: 50vh;
     overflow: auto;
 }
 
