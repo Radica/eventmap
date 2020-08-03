@@ -83,10 +83,7 @@ class MapContainer extends React.Component {
 const mapStateToProps = ({ home, /* events, */ search }) => ({
     eventsData: Object.values(
         home.eventsData
-            .sort(
-                (a, b) =>
-                    new Date(a.datetime_start) - new Date(b.datetime_start)
-            )
+            .sort((a, b) => new Date(b.modifiedAt) - new Date(a.modifiedAt))
             .reduce((acc, curr) => {
                 const key = `${curr.longitude},${curr.latitude}`;
                 if (acc && !acc[key]) {

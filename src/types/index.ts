@@ -7,6 +7,7 @@ export type Event = {
     id: number;
     title: string;
     url: string;
+    modifiedAt: string;
     content: string;
     contentType: string;
     latitude: number;
@@ -66,6 +67,7 @@ export type GetEventsPayload = {
         rendered: string;
     };
     link: string;
+    modified_gmt: string;
     content: {
         rendered: string;
     };
