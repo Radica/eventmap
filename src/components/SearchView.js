@@ -72,11 +72,24 @@ export default ({
     useLayoutEffect(() => {
         function onClearSearch() {
             handleSearch(null);
+            if (map) {
+                map.fitBounds([
+                    [-65.27952974884487, 54.281353451957585],
+                    [-127.3735738860654, 19.084515887021055],
+                ]);
+            }
         }
 
-        geocoder.on('clear', onClearSearch);
-        return () => geocoder.off('clear', onClearSearch);
-    }, [geocoder, handleSearch]);
+        if (map && geocoder) {
+            geocoder.on('clear', onClearSearch);
+        }
+
+        return () => {
+            if (map && geocoder) {
+                geocoder.off('clear', onClearSearch);
+            }
+        };
+    }, [geocoder, map, handleSearch]);
 
     return (
         <div className={styles.SearchContainer}>

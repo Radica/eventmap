@@ -1,21 +1,32 @@
 import React, { useState, useLayoutEffect } from 'react';
+import { connect } from 'react-redux';
 
 import ListItem from './ListItem';
-import searchAction from '../actions/search';
-import useThunkDispatch from '../utils/useThunkDispatch';
+// import searchAction from '../actions/search';
+// import useThunkDispatch from '../utils/useThunkDispatch';
 
 import styles from './ListView.css';
 
-export default ({ activeFilters, eventsData, sourceParam }) => {
+const ListView = ({ activeFilters, eventsData, sourceParam, map }) => {
     const [buttonTapped, setButtonTapped] = useState(false);
-    const dispatch = useThunkDispatch();
+    // const dispatch = useThunkDispatch();
+
+    // useLayoutEffect(() => {
+    //     if (buttonTapped) {
+    //         dispatch(searchAction.resetMap());
+    //         setButtonTapped(false);
+    //     }
+    // }, [dispatch, buttonTapped]);
 
     useLayoutEffect(() => {
-        if (buttonTapped) {
-            dispatch(searchAction.resetMap());
+        if (map && buttonTapped) {
+            map.fitBounds([
+                [-65.27952974884487, 54.281353451957585],
+                [-127.3735738860654, 19.084515887021055],
+            ]);
             setButtonTapped(false);
         }
-    }, [dispatch, buttonTapped]);
+    }, [map, buttonTapped]);
 
     return (
         <div className={styles.EventListContainer}>
@@ -47,3 +58,11 @@ export default ({ activeFilters, eventsData, sourceParam }) => {
         </div>
     );
 };
+
+const mapStateToProps = ({ search }) => {
+    return {
+        map: search.map,
+    };
+};
+
+export default connect(mapStateToProps)(ListView);
