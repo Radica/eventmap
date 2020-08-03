@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import ListView from '../components/ListView';
-import { getDistanceFromLatLonInKm } from '../helper';
+// import { getDistanceFromLatLonInKm } from '../helper';
 
 const inBounds = (ne, sw, lnglat) => {
     const lng = (lnglat.lng - ne.lng) * (lnglat.lng - sw.lng) < 0;
@@ -10,19 +10,11 @@ const inBounds = (ne, sw, lnglat) => {
     return lng && lat;
 };
 
-const ListContainer = ({
-    eventsData,
-    center,
-    activeFilters,
-    eventTypes,
-    sourceParam,
-}) => {
-    console.log('this.eventsData center', eventsData, center);
+const ListContainer = ({ eventsData, activeFilters, sourceParam }) => {
     return (
         <ListView
             activeFilters={activeFilters}
             eventsData={eventsData}
-            eventTypes={eventTypes}
             sourceParam={sourceParam}
         />
     );
@@ -101,9 +93,7 @@ const mapStateToProps = ({ home, search }) => {
 
     return {
         activeFilters: search.activeFilters,
-        center: search.center,
         eventsData: events,
-        eventTypes: home.eventTypes,
         searchQuery: search.searchQuery,
         sourceParam: search.sourceParam,
     };

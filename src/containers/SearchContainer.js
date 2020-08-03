@@ -121,8 +121,6 @@ class SearchContainer extends React.Component {
 
 const mapStateToProps = ({ search, home }) => ({
     activeFilters: search.activeFilters,
-    bounds: search.bounds,
-    center: search.center,
     chosenResult: search.chosenResult,
     chosenLocation: search.chosenLocation,
     eventTypes: home.eventTypes,
@@ -130,7 +128,6 @@ const mapStateToProps = ({ search, home }) => ({
     searchQuery: search.searchQuery,
     searchResults: search.searchResults.results,
     source: search.sourceParam,
-    zoomLevel: search.zoom,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -139,8 +136,6 @@ const mapDispatchToProps = (dispatch) => ({
     searchLocation: (text) => dispatch(searchAction.search(text)),
     selectResult: (item) => dispatch(searchAction.selectResult(item)),
     setFilters: (filters) => dispatch(searchAction.setFilters(filters)),
-    updateMap: (bounds, center, zoom) =>
-        dispatch(searchAction.updateMap(bounds, center, zoom)),
     updateSourceParam: (source) =>
         dispatch(searchAction.updateSourceParam(source)),
 });

@@ -49,7 +49,6 @@ class MapContainer extends React.Component {
             meetData,
             eventsData,
             center,
-            bounds,
             zoom,
             history,
             sourceParam,
