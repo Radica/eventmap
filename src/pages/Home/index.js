@@ -9,8 +9,7 @@ import loadable from '@loadable/component';
 import { Loading, ErrorBoundary } from '../../components';
 
 // @ts-ignore
-import AsyncEventMap from '../../containers/AsyncMegamap';
-// import AsyncEventMap from '../../components/EventMap';
+import Megamap from '../../containers/Megamap';
 
 const Home = loadable(() => import('./Home'), {
     fallback: <Loading />,
@@ -18,6 +17,6 @@ const Home = loadable(() => import('./Home'), {
 
 export default (props) => (
     <ErrorBoundary>
-        <Home {...props} AsyncEventMapComponent={AsyncEventMap} />
+        <Home {...props} Megamap={Megamap} />
     </ErrorBoundary>
 );

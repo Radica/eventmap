@@ -13,13 +13,13 @@ import loadable from '@loadable/component';
 import Loading from '../components/Loading';
 import ErrorBoundary from '../components/ErrorBoundary';
 
-const Megamap = loadable(() => import('./Megamap'), {
+const MapContainer = loadable(() => import('./MapContainer'), {
     ssr: false,
     fallback: <Loading />,
 });
 
 export default (props) => (
     <ErrorBoundary>
-        <Megamap {...props} />
+        <MapContainer {...props} />
     </ErrorBoundary>
 );

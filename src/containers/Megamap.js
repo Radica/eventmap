@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 
 import ListArea from '../components/ListArea';
 import MapArea from '../components/MapArea';
-import MapContainer from './MapContainer';
 import ListContainer from './ListContainer';
-import SearchContainer from './SearchContainer';
+import AsyncSearchContainer from './AsyncSearchContainer';
+import AsyncMapContainer from './AsyncMapContainer';
 
 import { fetchEventsIfNeeded } from '../actions/events';
 import { history } from '../utils/store';
@@ -26,11 +26,11 @@ class Megamap extends React.Component {
         return (
             <>
                 <ListArea>
-                    <SearchContainer history={history} />
+                    <AsyncSearchContainer history={history} />
                     <ListContainer history={history} />
                 </ListArea>
                 <MapArea>
-                    <MapContainer history={history} />
+                    <AsyncMapContainer history={history} />
                 </MapArea>
             </>
         );

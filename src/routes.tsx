@@ -1,6 +1,7 @@
 import * as eventsAction from './actions/events';
 import App from './app';
-import { asyncHome, NotFound } from './pages';
+import { NotFound } from './pages';
+import Home from './pages/Home/Home';
 
 export default [
     {
@@ -9,7 +10,7 @@ export default [
             {
                 path: '/',
                 exact: true,
-                component: asyncHome, // Add your route here
+                component: Home, // Add your route here
                 loadData: () => [
                     // Add other pre-fetched actions here
                     eventsAction.fetchEventsIfNeeded(),
