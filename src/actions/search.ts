@@ -52,7 +52,10 @@ const resetFilters = () => {
 };
 
 const updateMap = (
-    bounds: { northeast: number; southwest: number } = null,
+    bounds: {
+        northeast: { lng: number; lat: number };
+        southwest: { lng: number; lat: number };
+    } = null,
     center: [number, number] = null,
     zoom: [number] = null
 ) => {

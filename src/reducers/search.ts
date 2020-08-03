@@ -17,14 +17,23 @@ import {
 
 const defaultState: SearchState = {
     activeFilters: [], // null,
-    bounds: null,
-    center: null,
+    bounds: {
+        northeast: {
+            lng: -65.27952974884487,
+            lat: 54.281353451957585,
+        },
+        southwest: {
+            lng: -127.3735738860654,
+            lat: 19.084515887021055,
+        },
+    },
+    center: [-96.32655181745479, 38.80834427056388],
     chosenResult: null,
     chosenLocation: null,
     searchQuery: null,
     searchResults: [],
     sourceParam: null,
-    zoom: null,
+    zoom: [3.9564829608493017],
 };
 
 export default function (state = defaultState, action: SearchAction) {

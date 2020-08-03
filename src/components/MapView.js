@@ -100,9 +100,9 @@ class MapView extends React.Component {
                     onStyleLoad={this.handleStyleLoad}
                     style="mapbox://styles/darvelo/ckcsfj0cz1r9x1jpk95fs019r/draft" // eslint-disable-line
                     className="map-view-container"
-                    zoom={zoom || [3.9564829608493017]}
+                    zoom={zoom}
                     interactive
-                    center={center || [-96.32655181745479, 38.80834427056388]}
+                    center={center}
                     movingMethod="easeTo"
                     containerStyle={{
                         height: '100%',

@@ -25,9 +25,12 @@ export interface HomeState {
 export interface SearchState {
     searchQuery: string;
     activeFilters: Array<string>;
-    zoom: number;
+    zoom: [number];
     center: [number, number];
-    bounds: [number, number];
+    bounds: {
+        northeast: { lng: number; lat: number };
+        southwest: { lng: number; lat: number };
+    };
     searchResults: Array<any>;
     chosenResult: any;
     chosenLocation: string;

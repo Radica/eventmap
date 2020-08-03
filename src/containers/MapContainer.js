@@ -64,12 +64,13 @@ class MapContainer extends React.Component {
                 clickedItem={clickedItem}
                 handleClosePopup={this.handleClosePopup}
                 eventsData={eventsData}
-                center={center}
-                bounds={bounds}
-                zoom={zoom}
+                center={center || [-96.32655181745479, 38.80834427056388]}
+                zoom={zoom || [3.9564829608493017]}
                 initialBounds={[
-                    [-65.27952974884462, 48.05516321240586],
-                    [-127.37357388606493, 28.186236096579478],
+                    // [-59.84613697411788, 56.538022796549996],
+                    // [-132.8069666607906, 15.286463328296946],
+                    [-65.27952974884487, 54.281353451957585],
+                    [-127.3735738860654, 19.084515887021055],
                 ]}
                 handleMapChange={this.handleMapChange}
                 handleMapLoad={this.handleMapLoad}
