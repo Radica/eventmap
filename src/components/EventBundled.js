@@ -4,14 +4,14 @@ import EventSingle from './EventSingle.js';
 
 import styles from './EventBundled.css';
 
-export default ({ sourceParam, data }) => {
+export default ({ sourceParam, bundledEvents }) => {
     return (
         <div className="event-bundled-cont">
             <div className={styles.EventBundledItems}>
-                {data.map((item) => (
+                {bundledEvents.map((event) => (
                     <EventSingle
-                        key={item.id}
-                        data={item}
+                        key={event.id}
+                        event={event}
                         sourceParam={sourceParam}
                         bundled
                     />

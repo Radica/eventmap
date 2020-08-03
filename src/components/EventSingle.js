@@ -8,7 +8,7 @@ import bundledStyles from './EventBundled.css';
 export default ({
     bundled = false,
     sourceParam,
-    data: { title, url, content, contentType },
+    event: { title, url, content, contentType },
 }) => {
     const href = `${url}${sourceParam ? `?source=${sourceParam}` : ''}`;
 

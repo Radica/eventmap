@@ -3,8 +3,8 @@ import EventSingle from './EventSingle';
 
 import styles from './ListItem.css';
 
-export default ({ data, sourceParam }) => (
+export default ({ event, sourceParam }) => (
     <li className={styles.EventListItem}>
-        <EventSingle data={data} sourceParam={sourceParam} />
+        <EventSingle event={event} sourceParam={sourceParam} />
     </li>
 );

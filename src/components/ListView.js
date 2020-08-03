@@ -3,16 +3,16 @@ import ListItem from './ListItem';
 
 import styles from './ListView.css';
 
-export default ({ activeFilters, eventsData, eventTypes, sourceParam }) => {
+export default ({ activeFilters, eventsData, sourceParam }) => {
     return (
         <div className={styles.EventListContainer}>
             <ul className={styles.EventList}>
                 {!!activeFilters &&
-                    eventsData.map((item) => (
+                    eventsData.map((event) => (
                         <ListItem
-                            data={item}
+                            event={event}
                             sourceParam={sourceParam}
-                            key={`${item.longitude}-${item.latitude}-${item.url}`}
+                            key={`${event.longitude}-${event.latitude}-${event.url}`}
                         />
                     ))}
             </ul>

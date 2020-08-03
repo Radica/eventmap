@@ -53,15 +53,25 @@ class MapView extends React.Component {
 
     renderPopup() {
         const {
-            clickedItem: popup,
+            activeFilters,
+            clickedItem: bundledEvents,
             handleClosePopup,
             sourceParam,
         } = this.props;
 
+        const events = bundledEvents.filter((event) => {
+            return activeFilters.includes(event.contentType);
+        });
+
         return (
-            <Popup coordinates={[popup[0].longitude, popup[0].latitude]}>
+            <Popup
+                coordinates={[
+                    bundledEvents[0].longitude,
+                    bundledEvents[0].latitude,
+                ]}
+            >
                 <MapPopupItem
-                    popup={popup}
+                    bundledEvents={events}
                     handleClosePopup={handleClosePopup}
                     sourceParam={sourceParam}
                 />
@@ -131,8 +141,11 @@ class MapView extends React.Component {
                             }}
                         >
                             {eventsData
-                                .filter(
-                                    (event) => event[0].contentType === 'action'
+                                .filter((events) =>
+                                    events.some(
+                                        (event) =>
+                                            event.contentType === 'action'
+                                    )
                                 )
                                 .map((event) => (
                                     <Feature
@@ -165,8 +178,11 @@ class MapView extends React.Component {
                             }}
                         >
                             {eventsData
-                                .filter(
-                                    (event) => event[0].contentType === 'story'
+                                .filter((events) =>
+                                    events.some(
+                                        (event) =>
+                                            event.contentType === 'story'
+                                    )
                                 )
                                 .map((event) => (
                                     <Feature

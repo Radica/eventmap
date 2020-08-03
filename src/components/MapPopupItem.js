@@ -3,7 +3,7 @@ import EventBundled from './EventBundled';
 
 import styles from './MapPopupItem.css';
 
-export default ({ sourceParam, popup, handleClosePopup }) => (
+export default ({ sourceParam, bundledEvents, handleClosePopup }) => (
     <div className={styles.PopupItem}>
         <button
             type="button"
@@ -12,6 +12,6 @@ export default ({ sourceParam, popup, handleClosePopup }) => (
         >
             x
         </button>
-        <EventBundled data={popup} sourceParam={sourceParam} />
+        <EventBundled bundledEvents={bundledEvents} sourceParam={sourceParam} />
     </div>
 );

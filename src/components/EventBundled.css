@@ -35,6 +35,10 @@
 .EventBundledItem {
     padding: 5px 10px 5px;
 }
+.EventBundledItem:not(:first-child) {
+    border-top: 1px dashed var(--lightgray);
+    padding-top: 15px;
+}
 
 .EventBundledItem .event-list-item-date .event-list-date-view {
     margin-top: 0;
