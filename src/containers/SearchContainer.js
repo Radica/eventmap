@@ -1,29 +1,31 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import SearchView from '../components/SearchView';
-import { connect } from 'react-redux';
 import searchAction from '../actions/search';
-import { history } from '../utils/store';
 
 class SearchContainer extends React.Component {
-
     constructor(props) {
         super(props);
-        this.geocodeTimeout = null;
         this.state = {
-            searchQuery: '',
+            searchQuery: null,
         };
+
+        this.handleFilterChange = this.handleFilterChange.bind(this);
+        this.handleSearch = this.handleSearch.bind(this);
     }
 
     componentDidMount() {
-        this.props.history.listen((location, action) => {
-            if (action == "POP") {
+        const { history } = this.props;
+
+        history.listen((location, action) => {
+            if (action === 'POP') {
                 this.handleHistoryChange(location);
             }
         });
 
-        if (this.props.history.location.search !== "") {
-            this.handleHistoryChange(this.props.history.location);
+        if (history.location.search !== '') {
+            this.handleHistoryChange(history.location);
         }
     }
 
@@ -31,7 +33,7 @@ class SearchContainer extends React.Component {
         const query = new URLSearchParams(location.search);
         const {
             updateSourceParam,
-            searchZipcode,
+            searchLocation,
             setFilters,
             resetFilters,
         } = this.props;
@@ -40,97 +42,80 @@ class SearchContainer extends React.Component {
             updateSourceParam(query.get('source'));
         }
 
-        if (!query.get('zipcode') && !query.get('types')) {
-            // this.props.updateMap(null, [ -73.834, 40.676], [10]);
-        }
+        // if (!query.get('search') && !query.get('types')) {
+        //     this.props.updateMap(null, [ -73.834, 40.676], [10]);
+        // }
 
-        if (query.get('zipcode') && query.get('zipcode').length === 5) {
+        if (query.get('search')) {
             this.setState({
-                searchQuery: query.get('zipcode'),
+                searchQuery: query.get('search'),
             });
-            searchZipcode(query.get('zipcode'));
+            searchLocation(query.get('search'));
         }
 
         if (query.get('types')) {
             setFilters(query.get('types').split(','));
-        } else if (query.get('zipcode')) {
+        } else if (query.get('search')) {
             resetFilters();
         }
     }
 
-    handleSearch(event) {
+    // Store location ID when a search result is selected.
+    handleSearch(placeId) {
         const { clearSearchResults } = this.props;
         clearSearchResults();
 
         this.setState(
             {
-                searchQuery: event.target.value,
+                searchQuery: placeId,
             },
             () => {
                 const { searchQuery } = this.state;
                 console.log('handling search', searchQuery);
-                const { activeFilters, searchZipcode } = this.props;
-                if (searchQuery.length === 5) {
-                    searchZipcode(searchQuery);
-                    this.handleHistoryPush(activeFilters);
-                }
+                const { activeFilters, searchLocation } = this.props;
+                searchLocation(searchQuery);
+                this.handleHistoryPush(activeFilters);
             }
         );
     }
 
-    handleHistoryPush(types){
-        const source = this.props.source;
-        history.push(`?q=${this.state.searchQuery?`&zipcode=${this.state.searchQuery}`:''}${types&&types.length>0?`&types=${types.join(',')}`:''}${source?`&source=${source}`:''}`);
-    }
+    handleHistoryPush(types) {
+        const { searchQuery } = this.state;
+        const { history, source } = this.props;
 
-    handleKeyPress(event) {
-        if (event.key == "Enter") {
-            if (this.props.searchResults !== undefined &&
-                    this.props.searchResults &&
-                    this.props.searchResults.length > 0) {
-                    this.props.selectResult(this.props.searchResults[0]);
-                    this.setState({searchQuery: this.props.searchResults[0].formatted_address});
-                    this.props.clearSearchResults();
-                    event.preventDefault();
-                    return false;
-            }
+        const searchQueryParam = searchQuery ? `&search=${searchQuery}` : '';
+        const typesParam =
+            types && types.length > 0 ? `&types=${types.join(',')}` : '';
+        const sourceParam = source ? `&source=${source}` : '';
 
-            event.preventDefault();
-            return false;
-        }
-        // return false;
-    }
-
-    handleSelect(item) {
-        this.props.selectResult(item);
+        history.push(`?q=${searchQueryParam}${typesParam}${sourceParam}`);
     }
 
     handleFilterChange(event) {
-        const filter = event.target.value;
+        const { activeFilters, setFilters } = this.props;
+        const selectedFilter = event.target.value;
+        const updatedFilters = activeFilters.includes(selectedFilter)
+            ? activeFilters.filter((filter) => filter !== selectedFilter) // remove filter
+            : [...activeFilters, selectedFilter]; // add filter
 
-        if (this.props.activeFilters.includes(filter)) {
-            //remove filter
-            this.props.setFilters(this.props.activeFilters.filter(i => i !== filter));
-            this.handleHistoryPush(this.props.activeFilters.filter(i => i !== filter));
-        } else { // add filter
-            this.props.setFilters([...this.props.activeFilters, filter]);
-            this.handleHistoryPush([...this.props.activeFilters, filter]);
-        }
+        setFilters(updatedFilters);
+        this.handleHistoryPush(updatedFilters);
     }
 
     render() {
-        return <SearchView
-            activeFilters={this.props.activeFilters}
-            center={this.props.center}
-            eventTypes={this.props.eventTypes}
-            handleFilterChange={this.handleFilterChange.bind(this)}
-            handleKeyPress={this.handleKeyPress.bind(this)}
-            handleSearch={this.handleSearch.bind(this)}
-            searchQuery={this.state.searchQuery}
-            searchResults={this.props.searchResults}
-            selectResult={this.handleSelect.bind(this)}
-            zoomLevel={this.props.zoomLevel}
-        />;
+        const { activeFilters, eventTypes, map } = this.props;
+        const { searchQuery } = this.state;
+
+        return (
+            <SearchView
+                activeFilters={activeFilters}
+                eventTypes={eventTypes}
+                handleFilterChange={this.handleFilterChange}
+                handleSearch={this.handleSearch}
+                map={map}
+                searchQuery={searchQuery}
+            />
+        );
     }
 }
 
@@ -139,22 +124,25 @@ const mapStateToProps = ({ search, home }) => ({
     bounds: search.bounds,
     center: search.center,
     chosenResult: search.chosenResult,
-    chosenZipcode: search.chosenZipcode,
+    chosenLocation: search.chosenLocation,
     eventTypes: home.eventTypes,
+    map: search.map,
     searchQuery: search.searchQuery,
     searchResults: search.searchResults.results,
     source: search.sourceParam,
-    zipcodes: search.zipcodes,
-    zoomLevel: search.zoomLevel,
+    zoomLevel: search.zoom,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    clearSearchResults: () => { dispatch(searchAction.clearSearchResults()) },
-    resetFilters: () => { dispatch(searchAction.resetFilters()) },
-    searchZipcode: (text) => { dispatch(searchAction.search(text)); },
-    selectResult: (item) => { dispatch(searchAction.selectResult(item)) },
-    setFilters: (filters) => { dispatch(searchAction.setFilters(filters)) },
-    updateMap: (bounds, center, zoom) => { dispatch(searchAction.updateMap(bounds, center, zoom)) },
-    updateSourceParam: (source) => dispatch(searchAction.updateSourceParam(source)),
+    clearSearchResults: () => dispatch(searchAction.clearSearchResults()),
+    resetFilters: () => dispatch(searchAction.resetFilters()),
+    searchLocation: (text) => dispatch(searchAction.search(text)),
+    selectResult: (item) => dispatch(searchAction.selectResult(item)),
+    setFilters: (filters) => dispatch(searchAction.setFilters(filters)),
+    updateMap: (bounds, center, zoom) =>
+        dispatch(searchAction.updateMap(bounds, center, zoom)),
+    updateSourceParam: (source) =>
+        dispatch(searchAction.updateSourceParam(source)),
 });
+
 export default connect(mapStateToProps, mapDispatchToProps)(SearchContainer);

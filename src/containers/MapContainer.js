@@ -26,10 +26,6 @@ class MapContainer extends React.Component {
         this.setState({ clickedItem: null });
     }
 
-// _ne {lng: -65.18894762757027, lat: 54.104307101762856}
-// _sw: Pl {lng: -127.28299176479048, lat: 23.500589750244046}
-//{lng: -96.23596969618075, lat: 40.51662103078027} 3.9564829608493075
-
     handleMapChange(bounds, center, zoom) {
         const { updateMap } = this.props;
         updateMap(
@@ -49,9 +45,8 @@ class MapContainer extends React.Component {
 
     render() {
         const {
-            volunteerData,
+            activeFilters,
             meetData,
-            phonebankData,
             eventsData,
             center,
             bounds,
@@ -63,9 +58,8 @@ class MapContainer extends React.Component {
         const { clickedItem } = this.state;
         return (
             <MapView
-                volunteerData={volunteerData}
+                activeFilters={activeFilters}
                 meetData={meetData}
-                phonebankData={phonebankData}
                 handleFeatureClick={this.handleFeatureClick}
                 clickedItem={clickedItem}
                 handleClosePopup={this.handleClosePopup}
@@ -107,7 +101,6 @@ const mapStateToProps = ({ home, /* events, */ search }) => ({
     center: search.center,
     bounds: search.bounds,
     zoom: search.zoom,
-    chosenZipcode: search.chosenZipcode,
     sourceParam: search.sourceParam,
 });
 

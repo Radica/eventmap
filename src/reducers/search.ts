@@ -1,68 +1,59 @@
 import {
     SearchState,
+    SearchAction,
     SEARCH_SET_FILTERS,
     SEARCH_SET_QUERY,
     SEARCH_SET_RESULTS,
     SEARCH_ERROR_RESULTS,
     SEARCH_SET_SELECTED_RESULT,
+    SEARCH_RESET_FILTERS,
+    SEARCH_MAP_IS_LOADED,
+    SEARCH_UPDATE_MAP_INFORMATION,
+    SEARCH_SELECT_LOCATION,
+    GET_EVENTS_MANUALLY_SUCCESS,
+    UPDATE_SOURCE_PARAM,
 } from '../types';
 
-// @ts-ignore-next-line
-import zipcodes from '../assets/data/zipcodes';
-
 const defaultState: SearchState = {
-    searchQuery: null,
     activeFilters: [], // null,
-    zoom: null,
-    center: null,
     bounds: null,
-    searchResults: [],
+    center: null,
     chosenResult: null,
-    zipcodes,
-    chosenZipcode: null,
+    chosenLocation: null,
+    searchQuery: null,
+    searchResults: [],
     sourceParam: null,
+    zoom: null,
 };
 
-export default function (
-    state = defaultState,
-    action: {
-        type: string;
-        data: any;
-        payload: any;
-        zipcode: any;
-    }
-) {
+export default function (state = defaultState, action: SearchAction) {
     switch (action.type) {
-        case 'UPDATE_SOURCE_PARAM':
+        case UPDATE_SOURCE_PARAM:
             return {
                 ...state,
                 sourceParam: action.data.source,
             };
-        case 'SEARCH_RESET_FILTERS':
+        case SEARCH_RESET_FILTERS:
             return {
                 ...state,
                 activeFilters: defaultState.activeFilters,
             };
-        case 'SEARCH_MAP_IS_LOADED':
+        case SEARCH_MAP_IS_LOADED:
             return {
                 ...state,
                 map: action.data,
             };
-        case 'SEARCH_UPDATE_MAP_INFORMATION':
+        case SEARCH_UPDATE_MAP_INFORMATION:
             return {
                 ...state,
                 zoom: action.data.zoom || state.zoom,
                 center: action.data.center || state.center,
                 bounds: action.data.bounds || state.bounds,
             };
-        case 'SEARCH_SELECT_ZIPCODE':
+        case SEARCH_SELECT_LOCATION:
             return {
                 ...state,
-                chosenZipcode: action.zipcode,
-                zoom: [14],
-                center:
-                    state.zipcodes[action.zipcode] &&
-                    state.zipcodes[action.zipcode],
+                chosenLocation: action.data,
             };
         case SEARCH_SET_QUERY:
             return {
@@ -84,16 +75,19 @@ export default function (
                 ...state,
                 chosenResult: action.data.formatted_address,
                 // searchQuery: action.data.
-                bounds: action.data.geometry.bounds,
-                center: action.data.geometry.location,
+                // bounds: action.data.geometry.bounds,
+                // center: action.data.geometry.location,
             };
-        case 'EVENTS_LOAD_EVENTS_SUCCESS':
+        case GET_EVENTS_MANUALLY_SUCCESS:
             return {
                 ...state,
                 activeFilters:
                     state.activeFilters.length === 0
-                        ? action.payload.data.event_type_mappings.map(
-                              (i: { id: number }) => i.id.toString()
+                        ? Array.from(
+                              action.payload.data.reduce((memo, mapEntity) => {
+                                  memo.add(mapEntity.acf.map_content_type);
+                                  return memo;
+                              }, new Set())
                           )
                         : state.activeFilters,
             };

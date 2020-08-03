@@ -12,18 +12,21 @@
 .SearchForm {
     display: flex;
     align-items: stretch;
+}
 
-    .search-input {
-      position: relative;
-      flex-grow: 1;
-    }
+.SearchForm .search-input {
+  position: relative;
+  flex-grow: 1;
+}
+
+.SearchTextContainer {
+    width: 100%;
 }
 
 .SearchText {
     display: block;
     width: 100%;
-    padding: 5px 10px;
-    font-size: 14px;
+    max-width: none;
     line-height: 1.5;
     color: var(--dark-gray);
     background-color: #fff;
@@ -31,11 +34,11 @@
     background-clip: padding-box;
     border: 1px solid var(--lightgray);
     border-radius: 4px 0 0 4px;
-    height: 25px;
+    border-radius: 4px;
     text-align: center;
     font-weight: 800;
-
     font-family: var(--sans-serif);
+    box-shadow: none;
 }
 
 .SearchButton {
@@ -69,7 +72,7 @@
 
 .FilterForm ul li {
     margin: 2px 2px 2px 0;
-    border-radius: 2px;
+    border-radius: 3px;
     border: 1px solid var(--lightgray);
 }
 
@@ -85,31 +88,25 @@
     cursor: pointer;
 }
 
-.FilterForm ul li label img {
-    height: 14px;
-    margin-right: 4px;
-    filter: grayscale(100%);
-    -webkit-filter: grayscale(100%);
-    opacity: 0.5;
-}
-
 .FilterForm ul li input {
     display: none;
 }
 
 .FilterForm ul li input:checked + label {
-    /* color: blue; */
-    font-weight: 600;
-    background-color: var(--blue);
-    color: white;
     display: flex;
     align-items: center;
+    font-weight: 800;
+    /* background-color: var(--blue); */
+    background-color: transparent;
+    color: var(--darkgray);
+    /* color: blue; */
 }
 
 .FilterForm ul li input + label {
     padding: 4px;
     color: gray;
 }
+
 .FilterForm ul li input + label .event-check {
     display: none
 }
@@ -118,7 +115,27 @@
     display: block;
 }
 
-.FilterForm ul li input:checked + label img {
+.FilterForm .EventFilterIcon {
+    margin-right: 4px;
+    width: 12px;
+    height: 12px;
+    border: 2px solid white;
+    border-radius: 20px;
+    background-color: #555;
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);
+    opacity: 0.5;
+}
+
+.FilterForm .EventFilterIconAction {
+    background-color: #e35c04;
+}
+
+.FilterForm .EventFilterIconStory {
+    background-color: #2422bb;
+}
+
+.FilterForm ul li input:checked + label .EventFilterIcon {
     filter: grayscale(0%);
     -webkit-filter: grayscale(0%);
     opacity: 1;

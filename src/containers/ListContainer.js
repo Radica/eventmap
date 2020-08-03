@@ -33,12 +33,9 @@ const getEvents = (events, search) => {
         events.eventsData
             .filter((item) => {
                 const show =
-                    (!item.event_type && search.activeFilters.includes('0')) ||
-                    (!!item.event_type &&
-                        !!item.event_type.event_type_mapping &&
-                        search.activeFilters.includes(
-                            item.event_type.event_type_mapping.id.toString()
-                        ));
+                    !item.contentType ||
+                    (!!item.contentType &&
+                        search.activeFilters.includes(item.contentType));
 
                 if (!search.bounds) {
                     return show;
@@ -59,41 +56,42 @@ const getEvents = (events, search) => {
     );
 };
 
-const getClosestEvents = (events, search) => {
-    if (!search.center) {
-        return events.eventsData;
-    }
-    const centerLong = search.center[0];
-    const centerLat = search.center[1];
+// const getClosestEvents = (events, search) => {
+//     if (!search.center) {
+//         return events.eventsData;
+//     }
+//     const centerLong = search.center[0];
+//     const centerLat = search.center[1];
 
-    const eventsNearby = events.eventsData.sort(
-        (a, b) =>
-            getDistanceFromLatLonInKm(
-                a.latitude,
-                a.longitude,
-                centerLat,
-                centerLong
-            ) -
-            getDistanceFromLatLonInKm(
-                b.latitude,
-                b.longitude,
-                centerLat,
-                centerLong
-            )
-    );
+//     const eventsNearby = events.eventsData.sort(
+//         (a, b) =>
+//             getDistanceFromLatLonInKm(
+//                 a.latitude,
+//                 a.longitude,
+//                 centerLat,
+//                 centerLong
+//             ) -
+//             getDistanceFromLatLonInKm(
+//                 b.latitude,
+//                 b.longitude,
+//                 centerLat,
+//                 centerLong
+//             )
+//     );
 
-    if (events.length > 10) {
-        return eventsNearby.slice(0, 10);
-    }
-    return eventsNearby;
-};
+//     if (events.length > 10) {
+//         return eventsNearby.slice(0, 10);
+//     }
+//     return eventsNearby;
+// };
 
-const mapStateToProps = ({ home, /* events, */ search }) => {
+const mapStateToProps = ({ home, search }) => {
     const eventsData = getEvents(home, search);
-    let closestEvents;
-    if (eventsData.length === 0) {
-        closestEvents = getClosestEvents(home, search);
-    }
+    // let closestEvents = [];
+    // if (eventsData.length === 0) {
+    //     closestEvents = getClosestEvents(home, search);
+    // }
+    const events = /* eventsData.length === 0 ? closestEvents : */ eventsData;
 
     console.log(
         'search.searchQuery, search.activeFilters',
@@ -104,7 +102,7 @@ const mapStateToProps = ({ home, /* events, */ search }) => {
     return {
         activeFilters: search.activeFilters,
         center: search.center,
-        eventsData: eventsData.length === 0 ? closestEvents : eventsData,
+        eventsData: events,
         eventTypes: home.eventTypes,
         searchQuery: search.searchQuery,
         sourceParam: search.sourceParam,

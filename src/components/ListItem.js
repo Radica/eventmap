@@ -1,5 +1,4 @@
 import React from 'react';
-import EventBundled from './EventBundled';
 import EventSingle from  './EventSingle';
 
 import styles from './ListItem.css';

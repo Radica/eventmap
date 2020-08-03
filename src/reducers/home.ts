@@ -1,9 +1,9 @@
 import {
     HomeState,
     GetEventsAction,
-    GET_EVENTS_REQUEST,
-    GET_EVENTS_SUCCESS,
-    GET_EVENTS_FAIL,
+    GET_EVENTS_MANUALLY_REQUEST,
+    GET_EVENTS_MANUALLY_SUCCESS,
+    GET_EVENTS_MANUALLY_FAIL,
 } from '../types';
 
 // Export for unit testing
@@ -16,12 +16,12 @@ export const initialState: HomeState = {
 
 export default (state = initialState, action: GetEventsAction) => {
     switch (action.type) {
-        case GET_EVENTS_REQUEST:
+        case GET_EVENTS_MANUALLY_REQUEST:
             return {
                 ...state,
                 readyStatus: 'request',
             };
-        case GET_EVENTS_SUCCESS:
+        case GET_EVENTS_MANUALLY_SUCCESS:
             return {
                 ...state,
                 readyStatus: 'success',
@@ -40,7 +40,7 @@ export default (state = initialState, action: GetEventsAction) => {
                     longitude: Number(mapEntity.acf.longitude),
                 })),
             };
-        case GET_EVENTS_FAIL:
+        case GET_EVENTS_MANUALLY_FAIL:
             return {
                 ...state,
                 readyStatus: 'failure',

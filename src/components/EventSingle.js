@@ -22,7 +22,6 @@ export default ({
         address2,
         city,
         state,
-        zipcode,
         name,
         website,
         group,
@@ -69,7 +68,7 @@ export default ({
                         <span>{venue}</span>
                         {venue && address1 && <br />}
                         <span>
-                            {[address1, address2, city, state, zipcode]
+                            {[address1, address2, city, state]
                                 .filter((x) => x)
                                 .join(' ')}
                         </span>

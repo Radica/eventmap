@@ -6,6 +6,8 @@ import ReactMapboxGL, {
     Popup,
     ZoomControl,
 } from 'react-mapbox-gl';
+
+import { STORY_COLOR, ACTION_COLOR } from '../theme/variables';
 import MarkerIcon from '../assets/images/marker.png';
 
 import MapPopupItem from './MapPopupItem';
@@ -25,15 +27,16 @@ class MapView extends React.Component {
 
     handleStyleLoad(map) {
         this.map = map;
-        //  map.setCenter({ lng: -73.834, lat: 40.676 });
-        //  map.setZoom(10);
+        // map.setCenter({
+        //     lng: -96.32655181745479,
+        //     lat: 38.80834427056388,
+        // });
+        // map.setZoom(10);
 
         map.on('moveend', (event) => {
             const { handleMapChange } = this.props;
             handleMapChange(map.getBounds(), map.getCenter(), map.getZoom());
         });
-
-        this.map = map;
 
         const { handleMapLoad, center, initialBounds } = this.props;
         handleMapLoad(map);
@@ -68,6 +71,7 @@ class MapView extends React.Component {
 
     render() {
         const {
+            activeFilters,
             zoom,
             center,
             eventsData,
@@ -75,9 +79,10 @@ class MapView extends React.Component {
             clickedItem,
         } = this.props;
 
+        console.log('this.props.eventsData, zoom >> ', eventsData, zoom);
+
         return (
             <div className={styles.MapView}>
-                {console.log('this.props.eventsData >> ', eventsData)}
                 <Map
                     ref={(e) => {
                         this.map = e;
@@ -85,47 +90,99 @@ class MapView extends React.Component {
                     onStyleLoad={this.handleStyleLoad}
                     style="mapbox://styles/darvelo/ckcsfj0cz1r9x1jpk95fs019r/draft" // eslint-disable-line
                     className="map-view-container"
-                    zoom={zoom || [3]}
+                    zoom={zoom || [3.9564829608493017]}
                     interactive
-                    center={center || [-98.5795, 39.8283]}
+                    center={center || [-96.32655181745479, 38.80834427056388]}
                     movingMethod="easeTo"
                     containerStyle={{
                         height: '100%',
                         width: '100%',
                     }}
                 >
-                    <ZoomControl position="top-left" />
+                    <ZoomControl position="top-right" />
 
-                    <Layer
-                        type="circle"
-                        id="volunteerData"
-                        layout={{
-                            visibility: 'visible',
-                        }}
-                        paint={{
-                            'circle-radius': 5,
-                            'circle-color': '#e35c04',
-                            'circle-stroke-width': 2,
-                            'circle-stroke-color': 'white',
-                        }}
+                    {/*
+                    <Marker
+                        coordinates={[-98.5795, 39.8283]}
+                        anchor="bottom"
                     >
-                        {eventsData.map((event, idx) => (
-                            <Marker
-                                key={event[0].id}
-                                coordinates={[
-                                    event[0].longitude,
-                                    event[0].latitude,
-                                ]}
-                                anchor="bottom"
-                                onClick={(evt) => {
-                                    console.log(event);
-                                    handleFeatureClick(event);
-                                }}
-                            >
-                                <img alt="event marker icon" src="http://localhost:3000/marker.png" />
-                            </Marker>
-                        ))}
+                        <img alt="event marker icon" src={MarkerIcon} />
+                    </Marker>
+                     */}
+
+                    {/*
+                    <Layer type="symbol" layout={{ 'icon-image': 'harbor-15' }}>
+                        <Feature coordinates={[-74.005, 40.705]} />
                     </Layer>
+                     */}
+
+                    {activeFilters.includes('action') && (
+                        <Layer
+                            id="action"
+                            type="circle"
+                            layout={{
+                                visibility: 'visible',
+                            }}
+                            paint={{
+                                'circle-radius': 5,
+                                'circle-color': ACTION_COLOR,
+                                'circle-stroke-width': 2,
+                                'circle-stroke-color': 'white',
+                            }}
+                        >
+                            {eventsData
+                                .filter(
+                                    (event) => event[0].contentType === 'action'
+                                )
+                                .map((event) => (
+                                    <Feature
+                                        key={event[0].id}
+                                        coordinates={[
+                                            event[0].longitude,
+                                            event[0].latitude,
+                                        ]}
+                                        onClick={(evt) => {
+                                            console.log(event);
+                                            handleFeatureClick(event);
+                                        }}
+                                    />
+                                ))}
+                        </Layer>
+                    )}
+
+                    {activeFilters.includes('story') && (
+                        <Layer
+                            id="story"
+                            type="circle"
+                            layout={{
+                                visibility: 'visible',
+                            }}
+                            paint={{
+                                'circle-radius': 5,
+                                'circle-color': STORY_COLOR,
+                                'circle-stroke-width': 2,
+                                'circle-stroke-color': 'white',
+                            }}
+                        >
+                            {eventsData
+                                .filter(
+                                    (event) => event[0].contentType === 'story'
+                                )
+                                .map((event) => (
+                                    <Feature
+                                        key={event[0].id}
+                                        coordinates={[
+                                            event[0].longitude,
+                                            event[0].latitude,
+                                        ]}
+                                        onClick={(evt) => {
+                                            console.log(event);
+                                            handleFeatureClick(event);
+                                        }}
+                                    />
+                                ))}
+                        </Layer>
+                    )}
 
                     {clickedItem && this.renderPopup()}
                 </Map>

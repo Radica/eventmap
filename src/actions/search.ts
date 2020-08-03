@@ -4,16 +4,15 @@ import {
     SEARCH_SET_RESULTS,
     SEARCH_ERROR_RESULTS,
     SEARCH_SET_SELECTED_RESULT,
+    UPDATE_SOURCE_PARAM,
+    SEARCH_SELECT_LOCATION,
+    SEARCH_RESET_FILTERS,
+    SEARCH_UPDATE_MAP_INFORMATION,
+    SEARCH_MAP_IS_LOADED,
 } from '../types';
 
-// import Geocode from 'react-geocode';
-
-// const GOOGLE_API_KEY = "AIzaSyCW2bP6hUaZLATaAX-7Nfj5r4ISVsj99j8";
-// Geocode.setApiKey(GOOGLE_API_KEY);
-// Geocode.enableDebug();
-
 const updateSourceParam = (source: string) => ({
-    type: 'UPDATE_SOURCE_PARAM',
+    type: UPDATE_SOURCE_PARAM,
     data: { source },
 });
 
@@ -38,16 +37,16 @@ const selectResult = (item: any) => {
     };
 };
 
-const search = (zipcode: string) => {
+const search = (location: string) => {
     return {
-        type: 'SEARCH_SELECT_ZIPCODE',
-        zipcode,
+        type: SEARCH_SELECT_LOCATION,
+        data: location,
     };
 };
 
 const resetFilters = () => {
     return {
-        type: 'SEARCH_RESET_FILTERS',
+        type: SEARCH_RESET_FILTERS,
     };
 };
 
@@ -57,7 +56,7 @@ const updateMap = (
     zoom: [number] = null
 ) => {
     return {
-        type: 'SEARCH_UPDATE_MAP_INFORMATION',
+        type: SEARCH_UPDATE_MAP_INFORMATION,
         data: {
             bounds,
             center,
@@ -68,7 +67,7 @@ const updateMap = (
 
 const setMap = (map: any) => {
     return {
-        type: 'SEARCH_MAP_IS_LOADED',
+        type: SEARCH_MAP_IS_LOADED,
         data: map,
     };
 };
