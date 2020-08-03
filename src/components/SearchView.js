@@ -60,8 +60,8 @@ export default ({
     useLayoutEffect(() => {
         function onSelectSearchResult(event) {
             const { id } = event.result;
-            setLastSearchQuery(id);
             handleSearch(id);
+            setLastSearchQuery(id);
             geocoderEl.querySelector('input').blur();
         }
 
