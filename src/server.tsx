@@ -131,6 +131,9 @@ app.get('*', (req, res) => {
             // Check page status
             const status = staticContext.status === '404' ? 404 : 200;
 
+            // Don't send cookies across sites.
+            res.setHeader('Set-Cookie', 'HttpOnly;Secure;SameSite=Strict');
+
             // Pass the route and initial state into html template
             res.status(status).send(
                 renderHtml(head, extractor, htmlContent, initialState)
