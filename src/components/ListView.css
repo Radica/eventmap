@@ -13,3 +13,28 @@
     list-style: none;
     vertical-align: baseline;
 }
+
+.EventListNull {
+    padding: 20px;
+}
+
+.EventListNullText {
+    margin-top: 0;
+    font-family: var(--sans-serif);
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.15;
+}
+
+.EventListNullButton {
+    padding: 5px 16px;
+    border: none;
+    font-family: var(--sans-serif);
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.5;
+    background-color: var(--button-background-color);
+    color: var(--darkgray);
+    border-radius: 4px;
+    cursor: pointer;
+}

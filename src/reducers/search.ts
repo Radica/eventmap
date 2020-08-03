@@ -9,6 +9,7 @@ import {
     SEARCH_RESET_FILTERS,
     SEARCH_MAP_IS_LOADED,
     SEARCH_UPDATE_MAP_INFORMATION,
+    SEARCH_RESET_MAP_INFORMATION,
     SEARCH_SELECT_LOCATION,
     GET_EVENTS_MANUALLY_SUCCESS,
     UPDATE_SOURCE_PARAM,
@@ -42,6 +43,13 @@ export default function (state = defaultState, action: SearchAction) {
             return {
                 ...state,
                 map: action.data,
+            };
+        case SEARCH_RESET_MAP_INFORMATION:
+            return {
+                ...state,
+                zoom: defaultState.zoom,
+                center: defaultState.center,
+                bounds: defaultState.bounds,
             };
         case SEARCH_UPDATE_MAP_INFORMATION:
             return {

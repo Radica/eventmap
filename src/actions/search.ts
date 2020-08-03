@@ -8,6 +8,7 @@ import {
     SEARCH_SELECT_LOCATION,
     SEARCH_RESET_FILTERS,
     SEARCH_UPDATE_MAP_INFORMATION,
+    SEARCH_RESET_MAP_INFORMATION,
     SEARCH_MAP_IS_LOADED,
 } from '../types';
 
@@ -65,6 +66,12 @@ const updateMap = (
     };
 };
 
+const resetMap = () => {
+    return {
+        type: SEARCH_RESET_MAP_INFORMATION,
+    };
+};
+
 const setMap = (map: any) => {
     return {
         type: SEARCH_MAP_IS_LOADED,
@@ -78,6 +85,7 @@ export default {
     clearSearchResults,
     selectResult,
     updateMap,
+    resetMap,
     setMap,
     resetFilters,
     updateSourceParam,

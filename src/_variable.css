@@ -3,11 +3,13 @@
 :root {
     --blue: #e35c04;
     --lightgray: lightgray;
+    --button-background-color: #d7d6d7;
     --gray: #ccced0;
     --bluish-gray: #eaedef;
     --event-list-background: whitesmoke;
     --darkgray: rgba(21, 35, 45, 0.8);
-    --sans-serif: 'Montserrat', sans-serif;
+    /* --sans-serif: 'Montserrat', sans-serif; */
+    --sans-serif: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif;
     --light-blue: rgba(68,0,153,.1);
     --highlight: #ff430f;
     --event-type-story: #2422bb;
