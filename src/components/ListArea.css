@@ -1,10 +1,10 @@
 .ListArea {
-    width: 400px;
-    height: 100%;
-    background-color: blue;
     display: flex !important;
     flex-direction: column;
     border-right: 1px solid var(--gray);
+    width: 400px;
+    height: 100%;
+    background-color: var(--bluish-gray);
 }
 
 @media (max-width: 700px) {
