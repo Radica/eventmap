@@ -103,7 +103,7 @@ class MapView extends React.Component {
                         this.map = e;
                     }}
                     onStyleLoad={this.handleStyleLoad}
-                    style="mapbox://styles/darvelo/ckcsfj0cz1r9x1jpk95fs019r/draft" // eslint-disable-line
+                    style="mapbox://styles/darvelo/ckcsfj0cz1r9x1jpk95fs019r" // eslint-disable-line
                     className="map-view-container"
                     zoom={zoom}
                     interactive
