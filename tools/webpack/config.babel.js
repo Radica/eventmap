@@ -9,9 +9,15 @@ import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import LoadablePlugin from '@loadable/webpack-plugin';
 import PnpWebpackPlugin from 'pnp-webpack-plugin';
+import dotenv from 'dotenv';
 
 const nodeEnv = process.env.NODE_ENV || 'development';
 const isDev = nodeEnv === 'development';
+
+// Pull in environment variables from the env file.
+if (!isDev) {
+    dotenv.config();
+}
 
 // Setup the plugins for development/production
 const getPlugins = () => {
