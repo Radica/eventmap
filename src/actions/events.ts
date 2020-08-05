@@ -1,3 +1,5 @@
+import fetchJsonp from 'fetch-jsonp';
+
 import {
     ThunkDispatch,
     ThunkState,
@@ -12,8 +14,68 @@ import {
 import requestClient from '../utils/requestClient';
 
 const EVENTS_PER_PAGE = 100;
+const API_BASEURL = __API_BASEURL__;
 
-async function getEvents(): Promise<Array<GetEventsPayload>> {
+async function jsonpRequest({
+    page,
+}: {
+    page: number;
+}): Promise<Array<GetEventsPayload>> {
+    const response = await fetchJsonp(
+        `${API_BASEURL}/?rest_route=/wp/v2/map_stories&per_page=${EVENTS_PER_PAGE}&page=${page}`,
+        {
+            jsonpCallback: '_jsonp',
+        }
+    );
+    const json = await response.json();
+
+    if (json && json.data && json.data.status === 400) {
+        throw new Error('end of pages');
+    } else {
+        return json;
+    }
+}
+
+async function getPagesWithJsonp(
+    { currentPage }: { currentPage: number },
+    results: Array<GetEventsPayload>
+): Promise<Array<GetEventsPayload>> {
+    return jsonpRequest({ page: currentPage })
+        .then((response) => {
+            const newResults = [...results, ...response];
+            if (response.length === EVENTS_PER_PAGE) {
+                // there's probably another page. Fetch it.
+                return getPagesWithJsonp(
+                    {
+                        currentPage: currentPage + 1,
+                    },
+                    newResults
+                );
+            }
+            return newResults;
+        })
+        .catch(() => {
+            return results;
+        });
+}
+
+async function getEventsWithJsonp(): Promise<Array<GetEventsPayload>> {
+    // receiveData({"code":"rest_post_invalid_page_number","message":"The page number requested is larger than the number of pages available.","data":{"status":400}})
+    try {
+        const results: Array<GetEventsPayload> = await getPagesWithJsonp(
+            {
+                currentPage: 1,
+            },
+            []
+        );
+        return results;
+    } catch (e) {
+        console.error('should never get here');
+        return [];
+    }
+}
+
+async function getEventsWithCORS(): Promise<Array<GetEventsPayload>> {
     let results: Array<GetEventsPayload> = [];
     const firstPageResponse = await requestClient.request({
         method: 'GET',
@@ -48,6 +110,14 @@ async function getEvents(): Promise<Array<GetEventsPayload>> {
     });
 
     return results;
+}
+
+async function getEvents(): Promise<Array<GetEventsPayload>> {
+    if (API_BASEURL === window.location.origin) {
+        return getEventsWithCORS();
+    }
+
+    return getEventsWithJsonp();
 }
 
 export const fetchEvents = (): ThunkAction => async (
