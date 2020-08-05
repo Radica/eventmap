@@ -3,19 +3,14 @@ export default {
         host: process.env.NODE_HOST || 'localhost', // Define your host from 'package.json'
         port: process.env.PORT || 8080,
     },
-    api: {
-        host: process.env.NODE_API_HOST || 'localhost', // Define your host from 'package.json'
-        port: process.env.API_PORT || 8090,
-    },
     app: {
         htmlAttributes: { lang: 'en' },
-        title: 'React Cool Starter',
-        titleTemplate: 'React Cool Starter - %s',
+        title: 'National Black Worker Center Project Action Map',
+        titleTemplate: 'National Black Worker Center Project Action Map',
         meta: [
             {
                 name: 'description',
-                content:
-                    'The best react universal starter boilerplate in the world.',
+                content: 'Find actions and stories to experience on the map.',
             },
         ],
     },
