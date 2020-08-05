@@ -45,9 +45,11 @@ const getPlugins = () => {
             __DEV__: isDev,
             // TODO: Set real API URL.
             __API_BASEURL__: isDev
-                ? '"http://localhost:4000"'
-                : '"https://api.example.com"',
-            __MAPBOX_ACCESS_TOKEN__: `"${process.env.MAPBOX_ACCESS_TOKEN}"`,
+                ? JSON.stringify('http://localhost:4000')
+                : JSON.stringify('http://localhost:4000'),
+            __MAPBOX_ACCESS_TOKEN__: JSON.stringify(
+                process.env.MAPBOX_ACCESS_TOKEN
+            ),
         }),
         new webpack.ProgressPlugin(),
         PnpWebpackPlugin,
