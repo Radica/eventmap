@@ -16,7 +16,7 @@
     ],
     "scripts": {
         "dev": "cross-env NODE_ENV=development NODE_HOST=0.0.0.0 PORT=3000 DOTENV_CONFIG_PATH=.env.dev nodemon --exec ts-node -r dotenv/config --files .",
-        "start": "cross-env NODE_ENV=production NODE_HOST=0.0.0.0 PORT=8080 DOTENV_CONFIG_PATH=.env.dev ts-node -r dotenv/config --transpile-only --files .",
+        "start": "cross-env NODE_ENV=production NODE_HOST=0.0.0.0 PORT=8080 DOTENV_CONFIG_PATH=.env ts-node -r dotenv/config --transpile-only --files .",
         "console": "cross-env NODE_ENV=development DOTENV_CONFIG_PATH=.env.dev ts-node -r dotenv/config",
         "build": "npm run clean:build && cross-env NODE_ENV=production DOTENV_CONFIG_PATH=.env webpack --progress --hide-modules --config ./tools/webpack/config.babel.js",
         "analyze": "npm run clean:build && cross-env NODE_ENV=analyze webpack -p --progress --hide-modules --config ./tools/webpack/config.babel.js",
