@@ -35,7 +35,6 @@ async function getEvents(): Promise<Array<GetEventsPayload>> {
             method: 'GET',
             url: `/wp-json/wp/v2/map_stories`,
             params: {
-                // @ts-ignore-next-line
                 per_page: EVENTS_PER_PAGE,
                 page,
             },
