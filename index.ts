@@ -10,7 +10,7 @@ global.__DEV__ = process.env.NODE_ENV === 'development';
 // TODO: Fix url for production api server.
 global.__API_BASEURL__ = global.__DEV__
     ? 'http://wordpress:80'
-    : 'https://api.example.com';
+    : 'http://localhost:8080';
 global.__MAPBOX_ACCESS_TOKEN__ = process.env.MAPBOX_ACCESS_TOKEN;
 
 // Run assets require hooks

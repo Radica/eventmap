@@ -46,7 +46,7 @@ const getPlugins = () => {
             // TODO: Set real API URL.
             __API_BASEURL__: isDev
                 ? JSON.stringify('http://localhost:4000')
-                : JSON.stringify('http://localhost:4000'),
+                : JSON.stringify('http://localhost:8080'),
             __MAPBOX_ACCESS_TOKEN__: JSON.stringify(
                 process.env.MAPBOX_ACCESS_TOKEN
             ),
