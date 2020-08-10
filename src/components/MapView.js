@@ -17,6 +17,9 @@ import styles from './MapView.css';
 const Map = ReactMapboxGL({
     accessToken: __MAPBOX_ACCESS_TOKEN__,
     attributionControl: false,
+    minZoom: 3.5,
+    maxZoom: 8,
+    scrollZoom: false,
 });
 
 class MapView extends React.Component {
@@ -43,7 +46,7 @@ class MapView extends React.Component {
 
         if (center) {
             map.setCenter({ lng: center[0], lat: center[1] });
-            map.setZoom(14);
+            map.setZoom(7);
         }
 
         if (initialBounds) {
