@@ -162,9 +162,7 @@ export const fetchEvents = (): ThunkAction => async (
 
 /* istanbul ignore next */
 const shouldFetchEvents = (state: AppState): boolean => {
-    if (state.home.readyStatus === 'success') return false;
-
-    return true;
+    return state.home.readyStatus !== 'success';
 };
 
 /* istanbul ignore next */
