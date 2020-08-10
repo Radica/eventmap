@@ -20,8 +20,8 @@
 }
 
 .SearchForm .search-input {
-  position: relative;
-  flex-grow: 1;
+    position: relative;
+    flex-grow: 1;
 }
 
 .SearchTextContainer {
@@ -83,7 +83,6 @@
     border: 1px solid var(--lightgray);
 }
 
-
 .FilterForm ul li label {
     font-size: 10px;
     text-transform: uppercase;
@@ -91,7 +90,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
     cursor: pointer;
 }
 
@@ -99,23 +97,25 @@
     display: none;
 }
 
-.FilterForm ul li input:checked + label {
-    display: flex;
-    align-items: center;
-    font-weight: 800;
-    /* background-color: var(--blue); */
-    background-color: transparent;
-    color: var(--darkgray);
-    /* color: blue; */
-}
-
 .FilterForm ul li input + label {
     padding: 4px;
     color: gray;
 }
 
+.FilterForm ul li input:checked + label {
+    display: flex;
+    align-items: center;
+    font-weight: 800;
+
+    /* background-color: var(--blue); */
+    background-color: transparent;
+    color: var(--darkgray);
+
+    /* color: blue; */
+}
+
 .FilterForm ul li input + label .event-check {
-    display: none
+    display: none;
 }
 
 .FilterForm ul li input:checked + label .event-check {
@@ -135,11 +135,11 @@
 }
 
 .FilterForm .EventFilterIconAction {
-    background-color: var(--event-type-action);
+    background-color: var(--event-type-action-tint);
 }
 
 .FilterForm .EventFilterIconStory {
-    background-color: var(--event-type-story);
+    background-color: var(--event-type-story-tint);
 }
 
 .FilterForm ul li input:checked + label .EventFilterIcon {

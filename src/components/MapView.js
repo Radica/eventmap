@@ -7,7 +7,6 @@ import ReactMapboxGL, {
     ZoomControl,
 } from 'react-mapbox-gl';
 
-import { STORY_COLOR, ACTION_COLOR } from '../theme/variables';
 import GreenMarkerIcon from '../assets/images/GREEN_noun_Map_Marker_340172.png';
 import YellowMarkerIcon from '../assets/images/YELLOW_noun_Map_Marker_340172.png';
 

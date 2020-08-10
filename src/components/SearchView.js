@@ -4,7 +4,6 @@ import React, {
     useEffect,
     useLayoutEffect,
 } from 'react';
-// import Icon from 'react-fontawesome';
 import MapboxGL from 'mapbox-gl';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
