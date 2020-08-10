@@ -17,7 +17,7 @@ import styles from './MapView.css';
 const Map = ReactMapboxGL({
     accessToken: __MAPBOX_ACCESS_TOKEN__,
     attributionControl: false,
-    minZoom: 3.5,
+    minZoom: 2,
     maxZoom: 8,
     scrollZoom: false,
 });
