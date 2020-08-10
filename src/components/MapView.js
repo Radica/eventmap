@@ -144,11 +144,12 @@ class MapView extends React.Component {
                                 </Marker>
                             ))}
 
-                    {activeFilters.includes('story') &&
+                    {activeFilters.includes('organization') &&
                         eventsData
                             .filter((events) =>
                                 events.some(
-                                    (event) => event.contentType === 'story'
+                                    (event) =>
+                                        event.contentType === 'organization'
                                 )
                             )
                             .map((event) => (

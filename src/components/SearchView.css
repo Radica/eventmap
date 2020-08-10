@@ -138,8 +138,8 @@
     background-color: var(--event-type-action-tint);
 }
 
-.FilterForm .EventFilterIconStory {
-    background-color: var(--event-type-story-tint);
+.FilterForm .EventFilterIconOrganization {
+    background-color: var(--event-type-organization-tint);
 }
 
 .FilterForm ul li input:checked + label .EventFilterIcon {

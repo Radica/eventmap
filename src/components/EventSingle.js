@@ -18,8 +18,8 @@ export default ({
     }
 
     let contentTypeClassName = `${styles.EventListItemEventType}`;
-    if (contentType === 'story') {
-        contentTypeClassName = `${contentTypeClassName} ${styles.EventListItemEventTypeStory}`;
+    if (contentType === 'organization') {
+        contentTypeClassName = `${contentTypeClassName} ${styles.EventListItemEventTypeOrganization}`;
     } else if (contentType === 'action') {
         contentTypeClassName = `${contentTypeClassName} ${styles.EventListItemEventTypeAction}`;
     }

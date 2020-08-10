@@ -60,9 +60,9 @@
     font-weight: 600;
     color: var(--darkgray);
 }
-.EventListItemEventTypeStory {
-    background-color: var(--event-type-story-highlight);
-    color: var(--event-type-story-tint);
+.EventListItemEventTypeOrganization {
+    background-color: var(--event-type-organization-highlight);
+    color: var(--event-type-organization-tint);
 }
 .EventListItemEventTypeAction {
     background-color: var(--event-type-action-highlight);

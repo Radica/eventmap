@@ -125,8 +125,8 @@ export default ({
                                             ? styles.EventFilterIconAction
                                             : ''
                                     } ${
-                                        eventType === 'story'
-                                            ? styles.EventFilterIconStory
+                                        eventType === 'organization'
+                                            ? styles.EventFilterIconOrganization
                                             : ''
                                     }`}
                                 />

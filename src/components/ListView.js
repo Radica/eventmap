@@ -43,7 +43,8 @@ const ListView = ({ activeFilters, eventsData, sourceParam, map }) => {
                     <div className={styles.EventListNull}>
                         <p className={styles.EventListNullText}>
                             Nothing found in this area. Try a different search,
-                            or zoom out to find the closest action or story.
+                            or zoom out to find the closest action or
+                            organization.
                         </p>
                         <button
                             type="button"
