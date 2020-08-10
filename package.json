@@ -182,7 +182,16 @@
         ],
         "rules": {
             "string-quotes": "single",
-            "prettier/prettier": true
+            "prettier/prettier": true,
+            "selector-pseudo-class-no-unknown": [
+                true,
+                {
+                    "ignorePseudoClasses": [
+                        "global",
+                        "local"
+                    ]
+                }
+            ]
         },
         "ignoreFiles": [
             "public/assets/**/*.css",
