@@ -113,7 +113,7 @@ async function getEventsWithCORS(): Promise<Array<GetEventsPayload>> {
 }
 
 async function getEvents(): Promise<Array<GetEventsPayload>> {
-    if (API_BASEURL === window.location.origin) {
+    if (__SERVER__ || API_BASEURL === window.location.origin) {
         return getEventsWithCORS();
     }
 
