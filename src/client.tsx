@@ -22,7 +22,7 @@ const render = (Routes: Array<object>) => {
                 </ConnectedRouter>
             </Provider>
         </AppContainer>,
-        document.getElementById('react-view')
+        document.getElementById('events-map-react-root')
     );
 };
 

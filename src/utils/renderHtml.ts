@@ -30,7 +30,7 @@ export default (
       </head>
       <body>
         <!-- Insert the router, which passed from server-side -->
-        <div id="react-view">${htmlContent}</div>
+        <div id="events-map-react-root">${htmlContent}</div>
 
         <!-- Store the initial state into window -->
         <script>
