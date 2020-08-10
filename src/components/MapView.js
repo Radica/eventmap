@@ -77,6 +77,11 @@ class MapView extends React.Component {
                     bundledEvents[0].longitude,
                     bundledEvents[0].latitude,
                 ]}
+                offset={{
+                    bottom: [0, -56],
+                    'bottom-left': [0, -56],
+                    'bottom-right': [0, -56],
+                }}
             >
                 <MapPopupItem
                     bundledEvents={events}
