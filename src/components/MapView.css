@@ -7,3 +7,12 @@
 ::global(.mapboxgl-popup-content) {
   padding: 0 !important;
 }
+
+.Marker {
+    --marker-width: 48px;
+    --marker-height: 89px;
+    --scale: 1.8;
+    width: calc(var(--marker-width) / var(--scale));
+    height: calc(var(--marker-height) / var(--scale));
+    cursor: pointer;
+}

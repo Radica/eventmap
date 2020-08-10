@@ -8,7 +8,8 @@ import ReactMapboxGL, {
 } from 'react-mapbox-gl';
 
 import { STORY_COLOR, ACTION_COLOR } from '../theme/variables';
-import MarkerIcon from '../assets/images/marker.png';
+import GreenMarkerIcon from '../assets/images/GREEN_noun_Map_Marker_340172.png';
+import YellowMarkerIcon from '../assets/images/YELLOW_noun_Map_Marker_340172.png';
 
 import MapPopupItem from './MapPopupItem';
 
@@ -116,94 +117,61 @@ class MapView extends React.Component {
                 >
                     <ZoomControl position="top-right" />
 
-                    {/*
-                    <Marker
-                        coordinates={[-98.5795, 39.8283]}
-                        anchor="bottom"
-                    >
-                        <img alt="event marker icon" src={MarkerIcon} />
-                    </Marker>
-                     */}
-
-                    {/*
-                    <Layer type="symbol" layout={{ 'icon-image': 'harbor-15' }}>
-                        <Feature coordinates={[-74.005, 40.705]} />
-                    </Layer>
-                     */}
-
-                    {activeFilters.includes('action') && (
-                        <Layer
-                            id="action"
-                            type="circle"
-                            layout={{
-                                visibility: 'visible',
-                            }}
-                            paint={{
-                                'circle-radius': 5,
-                                'circle-color': ACTION_COLOR,
-                                'circle-stroke-width': 2,
-                                'circle-stroke-color': 'white',
-                            }}
-                        >
-                            {eventsData
-                                .filter((events) =>
-                                    events.some(
-                                        (event) =>
-                                            event.contentType === 'action'
-                                    )
+                    {activeFilters.includes('action') &&
+                        eventsData
+                            .filter((events) =>
+                                events.some(
+                                    (event) => event.contentType === 'action'
                                 )
-                                .map((event) => (
-                                    <Feature
-                                        key={event[0].id}
-                                        coordinates={[
-                                            event[0].longitude,
-                                            event[0].latitude,
-                                        ]}
-                                        onClick={(evt) => {
-                                            console.log(event);
-                                            handleFeatureClick(event);
-                                        }}
+                            )
+                            .map((event) => (
+                                <Marker
+                                    key={event[0].id}
+                                    coordinates={[
+                                        event[0].longitude,
+                                        event[0].latitude,
+                                    ]}
+                                    anchor="bottom"
+                                    onClick={(evt) => {
+                                        console.log(event);
+                                        handleFeatureClick(event);
+                                    }}
+                                >
+                                    <img
+                                        className={styles.Marker}
+                                        alt="event marker icon"
+                                        src={YellowMarkerIcon}
                                     />
-                                ))}
-                        </Layer>
-                    )}
+                                </Marker>
+                            ))}
 
-                    {activeFilters.includes('story') && (
-                        <Layer
-                            id="story"
-                            type="circle"
-                            layout={{
-                                visibility: 'visible',
-                            }}
-                            paint={{
-                                'circle-radius': 5,
-                                'circle-color': STORY_COLOR,
-                                'circle-stroke-width': 2,
-                                'circle-stroke-color': 'white',
-                            }}
-                        >
-                            {eventsData
-                                .filter((events) =>
-                                    events.some(
-                                        (event) =>
-                                            event.contentType === 'story'
-                                    )
+                    {activeFilters.includes('story') &&
+                        eventsData
+                            .filter((events) =>
+                                events.some(
+                                    (event) => event.contentType === 'story'
                                 )
-                                .map((event) => (
-                                    <Feature
-                                        key={event[0].id}
-                                        coordinates={[
-                                            event[0].longitude,
-                                            event[0].latitude,
-                                        ]}
-                                        onClick={(evt) => {
-                                            console.log(event);
-                                            handleFeatureClick(event);
-                                        }}
+                            )
+                            .map((event) => (
+                                <Marker
+                                    key={event[0].id}
+                                    coordinates={[
+                                        event[0].longitude,
+                                        event[0].latitude,
+                                    ]}
+                                    anchor="bottom"
+                                    onClick={(evt) => {
+                                        console.log(event);
+                                        handleFeatureClick(event);
+                                    }}
+                                >
+                                    <img
+                                        className={styles.Marker}
+                                        alt="event marker icon"
+                                        src={GreenMarkerIcon}
                                     />
-                                ))}
-                        </Layer>
-                    )}
+                                </Marker>
+                            ))}
 
                     {clickedItem && this.renderPopup()}
                 </Map>
