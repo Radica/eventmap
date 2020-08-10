@@ -20,9 +20,9 @@ const Home = () => {
 
     console.log('event types:', eventTypes);
 
-    useEffect(() => {
-        dispatch(eventsAction.fetchEventsIfNeeded());
-    }, [dispatch]);
+    // useEffect(() => {
+    //     dispatch(eventsAction.fetchEventsIfNeeded());
+    // }, [dispatch]);
 
     const renderEventMap = () => {
         // if (
