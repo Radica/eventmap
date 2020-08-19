@@ -7,8 +7,8 @@ import ReactMapboxGL, {
     ZoomControl,
 } from 'react-mapbox-gl';
 
-import GreenMarkerIcon from '../assets/images/GREEN_noun_Map_Marker_340172.png';
-import YellowMarkerIcon from '../assets/images/YELLOW_noun_Map_Marker_340172.png';
+import OrganizationMarkerIcon from '../assets/images/marker-organization.png';
+import ActionMarkerIcon from '../assets/images/marker-action.png';
 
 import MapPopupItem from './MapPopupItem';
 
@@ -147,7 +147,7 @@ class MapView extends React.Component {
                                     <img
                                         className={styles.Marker}
                                         alt="event marker icon"
-                                        src={YellowMarkerIcon}
+                                        src={ActionMarkerIcon}
                                     />
                                 </Marker>
                             ))}
@@ -176,7 +176,7 @@ class MapView extends React.Component {
                                     <img
                                         className={styles.Marker}
                                         alt="event marker icon"
-                                        src={GreenMarkerIcon}
+                                        src={OrganizationMarkerIcon}
                                     />
                                 </Marker>
                             ))}
