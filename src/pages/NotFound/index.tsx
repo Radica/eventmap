@@ -15,8 +15,8 @@ export default memo(({ staticContext }: Props) => {
 
     return (
         <div className={styles.NotFound}>
-            <Helmet title="Oops" />
-            <p>Oops, Page was not found!</p>
+            <Helmet title="Not Found" />
+            <p>Page was not found!</p>
         </div>
     );
 });
