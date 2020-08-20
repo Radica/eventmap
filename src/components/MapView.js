@@ -2,13 +2,11 @@ import React from 'react';
 import ReactMapboxGL, {
     Layer,
     Feature,
-    Marker,
     Popup,
     ZoomControl,
 } from 'react-mapbox-gl';
 
-import OrganizationMarkerIcon from '../assets/images/marker-organization.png';
-import ActionMarkerIcon from '../assets/images/marker-action.png';
+import { ORGANIZATION_COLOR, ACTION_COLOR } from '../theme/variables';
 
 import MapPopupItem from './MapPopupItem';
 
@@ -77,11 +75,6 @@ class MapView extends React.Component {
                     bundledEvents[0].longitude,
                     bundledEvents[0].latitude,
                 ]}
-                offset={{
-                    bottom: [0, -30],
-                    'bottom-left': [0, -30],
-                    'bottom-right': [0, -30],
-                }}
             >
                 <MapPopupItem
                     bundledEvents={events}
@@ -124,62 +117,79 @@ class MapView extends React.Component {
                 >
                     <ZoomControl position="top-right" />
 
-                    {activeFilters.includes('action') &&
-                        eventsData
-                            .filter((events) =>
-                                events.some(
-                                    (event) => event.contentType === 'action'
+                    {activeFilters.includes('action') && (
+                        <Layer
+                            id="action"
+                            type="circle"
+                            layout={{
+                                visibility: 'visible',
+                            }}
+                            paint={{
+                                'circle-radius': 5,
+                                'circle-color': ACTION_COLOR,
+                                'circle-stroke-width': 2,
+                                'circle-stroke-color': 'white',
+                            }}
+                        >
+                            {eventsData
+                                .filter((events) =>
+                                    events.some(
+                                        (event) =>
+                                            event.contentType === 'action'
+                                    )
                                 )
-                            )
-                            .map((event) => (
-                                <Marker
-                                    key={event[0].id}
-                                    coordinates={[
-                                        event[0].longitude,
-                                        event[0].latitude,
-                                    ]}
-                                    anchor="bottom"
-                                    onClick={(evt) => {
-                                        console.log(event);
-                                        handleFeatureClick(event);
-                                    }}
-                                >
-                                    <img
-                                        className={styles.Marker}
-                                        alt="event marker icon"
-                                        src={ActionMarkerIcon}
+                                .map((event) => (
+                                    <Feature
+                                        key={event[0].id}
+                                        coordinates={[
+                                            event[0].longitude,
+                                            event[0].latitude,
+                                        ]}
+                                        onClick={(evt) => {
+                                            console.log(event);
+                                            handleFeatureClick(event);
+                                        }}
                                     />
-                                </Marker>
-                            ))}
+                                ))}
+                        </Layer>
+                    )}
 
-                    {activeFilters.includes('organization') &&
-                        eventsData
-                            .filter((events) =>
-                                events.some(
-                                    (event) =>
-                                        event.contentType === 'organization'
+                    {activeFilters.includes('organization') && (
+                        <Layer
+                            id="organization"
+                            type="circle"
+                            layout={{
+                                visibility: 'visible',
+                            }}
+                            paint={{
+                                'circle-radius': 5,
+                                'circle-color': ORGANIZATION_COLOR,
+                                'circle-stroke-width': 2,
+                                'circle-stroke-color': 'white',
+                            }}
+                        >
+                            {eventsData
+                                .filter((events) =>
+                                    events.some(
+                                        (event) =>
+                                            event.contentType === 'organization'
+                                    )
                                 )
-                            )
-                            .map((event) => (
-                                <Marker
-                                    key={event[0].id}
-                                    coordinates={[
-                                        event[0].longitude,
-                                        event[0].latitude,
-                                    ]}
-                                    anchor="bottom"
-                                    onClick={(evt) => {
-                                        console.log(event);
-                                        handleFeatureClick(event);
-                                    }}
-                                >
-                                    <img
-                                        className={styles.Marker}
-                                        alt="event marker icon"
-                                        src={OrganizationMarkerIcon}
+                                .map((event) => (
+                                    <Feature
+                                        key={event[0].id}
+                                        coordinates={[
+                                            event[0].longitude,
+                                            event[0].latitude,
+                                        ]}
+                                        onClick={(evt) => {
+                                            console.log(event);
+                                            handleFeatureClick(event);
+                                        }}
                                     />
-                                </Marker>
-                            ))}
+                                ))}
+                        </Layer>
+                    )}
 
                     {clickedItem && this.renderPopup()}
                 </Map>
