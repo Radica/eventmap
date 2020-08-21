@@ -165,7 +165,7 @@ module.exports = {
     },
     output: {
         path: path.resolve(process.cwd(), 'public/assets'),
-        publicPath: '/assets/',
+        publicPath: '/wp-content/uploads/action-map-assets/',
         // Don't use chunkhash in development it will increase compilation time
         filename: isDev ? '[name].js' : '[name].[chunkhash:8].js',
         chunkFilename: isDev ? '[id].js' : '[id].[chunkhash:8].js',
