@@ -158,6 +158,7 @@
             "__SERVER__": true,
             "__DEV__": true,
             "__API_BASEURL__": true,
+            "__BASEPATH__": true,
             "__MAPBOX_ACCESS_TOKEN__": true
         }
     },

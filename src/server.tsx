@@ -60,7 +60,7 @@ if (__DEV__) {
 }
 
 // Register server-side rendering middleware
-app.get('*', (req, res) => {
+app.get(`${__BASEPATH__}*`, (req, res) => {
     const { store } = configureStore({ url: req.url });
 
     // The method for loading data from server-side

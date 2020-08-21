@@ -20,7 +20,7 @@ export default ({ initialState, url }: Argv) => {
     // Create a history depending on the environment
     const history = isServer
         ? createMemoryHistory({
-              initialEntries: [url || '/'],
+              initialEntries: [url || __BASEPATH__],
           })
         : createBrowserHistory();
     const middlewares = [

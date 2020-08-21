@@ -11,6 +11,7 @@ global.__DEV__ = process.env.NODE_ENV === 'development';
 global.__API_BASEURL__ = global.__DEV__
     ? 'http://wordpress:80'
     : 'http://localhost:8080';
+global.__BASEPATH__ = process.env.BASEPATH;
 global.__MAPBOX_ACCESS_TOKEN__ = process.env.MAPBOX_ACCESS_TOKEN;
 
 // Run assets require hooks

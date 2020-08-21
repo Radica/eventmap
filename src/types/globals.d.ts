@@ -2,6 +2,7 @@ declare const __CLIENT__: boolean;
 declare const __SERVER__: boolean;
 declare const __DEV__: boolean;
 declare const __API_BASEURL__: string;
+declare const __BASEPATH__: string;
 declare const __MAPBOX_ACCESS_TOKEN__: string;
 
 declare module '*.svg';
@@ -19,6 +20,7 @@ declare namespace NodeJS {
         __SERVER__: boolean;
         __DEV__: boolean;
         __API_BASEURL__: string;
+        __BASEPATH__: string;
         __MAPBOX_ACCESS_TOKEN__: string;
     }
 }
