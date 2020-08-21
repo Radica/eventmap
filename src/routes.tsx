@@ -8,7 +8,7 @@ export default [
         component: App,
         routes: [
             {
-                path: '/',
+                path: '/action-map/',
                 exact: true,
                 component: Home, // Add your route here
                 loadData: () => [
