@@ -47,7 +47,7 @@ class SearchContainer extends React.Component {
         }
 
         this.setState({
-            searchQuery: search || null,
+            searchQuery: search,
             shouldQuery: search !== searchQuery,
         });
 
