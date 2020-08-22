@@ -85,12 +85,6 @@ const mapStateToProps = ({ home, search }) => {
     // }
     const events = /* eventsData.length === 0 ? closestEvents : */ eventsData;
 
-    console.log(
-        'search.searchQuery, search.activeFilters',
-        search.searchQuery === '' ? '<BLANK>' : search.searchQuery,
-        search.activeFilters
-    );
-
     return {
         activeFilters: search.activeFilters,
         eventsData: events,

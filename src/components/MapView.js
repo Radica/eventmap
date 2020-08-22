@@ -95,8 +95,6 @@ class MapView extends React.Component {
             clickedItem,
         } = this.props;
 
-        console.log('this.props.eventsData, zoom >> ', eventsData, zoom);
-
         return (
             <div className={styles.MapView}>
                 <Map
