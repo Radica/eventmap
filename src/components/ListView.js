@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import ListItem from './ListItem';
@@ -11,14 +11,7 @@ const ListView = ({ activeFilters, eventsData, sourceParam, map }) => {
     const [buttonTapped, setButtonTapped] = useState(false);
     // const dispatch = useThunkDispatch();
 
-    // useLayoutEffect(() => {
-    //     if (buttonTapped) {
-    //         dispatch(searchAction.resetMap());
-    //         setButtonTapped(false);
-    //     }
-    // }, [dispatch, buttonTapped]);
-
-    useLayoutEffect(() => {
+    useEffect(() => {
         if (map && buttonTapped) {
             map.fitBounds([
                 [-65.27952974884487, 54.281353451957585],
