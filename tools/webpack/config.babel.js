@@ -13,11 +13,12 @@ import dotenv from 'dotenv';
 
 const nodeEnv = process.env.NODE_ENV || 'development';
 const isDev = nodeEnv === 'development';
-
 // Pull in environment variables from the env file.
 if (!isDev) {
     dotenv.config();
 }
+
+const isStandalone = process.env.STANDALONE === 'true';
 
 // Setup the plugins for development/production
 const getPlugins = () => {
@@ -43,10 +44,7 @@ const getPlugins = () => {
             __CLIENT__: true,
             __SERVER__: false,
             __DEV__: isDev,
-            // TODO: Set real API URL.
-            __API_BASEURL__: isDev
-                ? JSON.stringify('http://localhost:4000')
-                : JSON.stringify('http://localhost:8080'),
+            __API_BASEURL__: JSON.stringify(process.env.API_BASEURL_FOR_CLIENT),
             __BASEPATH__: JSON.stringify(process.env.BASEPATH),
             __MAPBOX_ACCESS_TOKEN__: JSON.stringify(
                 process.env.MAPBOX_ACCESS_TOKEN
@@ -166,7 +164,9 @@ module.exports = {
     },
     output: {
         path: path.resolve(process.cwd(), 'public/assets'),
-        publicPath: '/wp-content/uploads/action-map-assets/',
+        publicPath: isStandalone
+            ? process.env.ASSETS_PATH_STANDALONE
+            : process.env.ASSETS_PATH_SSR,
         // Don't use chunkhash in development it will increase compilation time
         filename: isDev ? '[name].js' : '[name].[chunkhash:8].js',
         chunkFilename: isDev ? '[id].js' : '[id].[chunkhash:8].js',
