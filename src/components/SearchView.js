@@ -17,8 +17,8 @@ export default ({
     handleSearch,
     map,
     searchQuery,
+    shouldQuery,
 }) => {
-    const [lastSearchQuery, setLastSearchQuery] = useState(null);
     const [geocoder] = useState(
         new MapboxGeocoder({
             accessToken: __MAPBOX_ACCESS_TOKEN__,
@@ -51,16 +51,26 @@ export default ({
     }, [map, geocoder]);
 
     useLayoutEffect(() => {
-        if (geocoderEl && searchQuery && searchQuery !== lastSearchQuery) {
-            geocoder.query(searchQuery);
+        if (map && searchQuery == null) {
+            map.fitBounds([
+                [-65.27952974884487, 54.281353451957585],
+                [-127.3735738860654, 19.084515887021055],
+            ]);
         }
-    }, [geocoder, geocoderEl, searchQuery, lastSearchQuery]);
+
+        if (geocoderEl && shouldQuery) {
+            if (searchQuery) {
+                geocoder.query(searchQuery);
+            } else {
+                geocoder.clear();
+            }
+        }
+    }, [map, geocoder, geocoderEl, searchQuery, shouldQuery]);
 
     useLayoutEffect(() => {
         function onSelectSearchResult(event) {
             const { id } = event.result;
             handleSearch(id);
-            setLastSearchQuery(id);
             geocoderEl.querySelector('input').blur();
         }
 
@@ -71,12 +81,6 @@ export default ({
     useLayoutEffect(() => {
         function onClearSearch() {
             handleSearch(null);
-            if (map) {
-                map.fitBounds([
-                    [-65.27952974884487, 54.281353451957585],
-                    [-127.3735738860654, 19.084515887021055],
-                ]);
-            }
         }
 
         if (map && geocoder) {

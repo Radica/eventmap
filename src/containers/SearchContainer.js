@@ -9,6 +9,7 @@ class SearchContainer extends React.Component {
         super(props);
         this.state = {
             searchQuery: null,
+            shouldQuery: false,
         };
 
         this.handleFilterChange = this.handleFilterChange.bind(this);
@@ -38,20 +39,19 @@ class SearchContainer extends React.Component {
             resetFilters,
         } = this.props;
 
+        const { searchQuery } = this.state;
+        const search = query.get('search') || null;
+
         if (query.get('source')) {
             updateSourceParam(query.get('source'));
         }
 
-        // if (!query.get('search') && !query.get('types')) {
-        //     this.props.updateMap(null, [ -73.834, 40.676], [10]);
-        // }
+        this.setState({
+            searchQuery: search || null,
+            shouldQuery: search !== searchQuery,
+        });
 
-        if (query.get('search')) {
-            this.setState({
-                searchQuery: query.get('search'),
-            });
-            searchLocation(query.get('search'));
-        }
+        searchLocation(search);
 
         if (query.get('types')) {
             setFilters(query.get('types').split(','));
@@ -63,17 +63,23 @@ class SearchContainer extends React.Component {
     // Store location ID when a search result is selected.
     handleSearch(placeId) {
         const { clearSearchResults } = this.props;
+        const { searchQuery } = this.state;
+        const isCurrentSearch = placeId === searchQuery;
+
         clearSearchResults();
 
         this.setState(
             {
                 searchQuery: placeId,
+                shouldQuery: false,
             },
             () => {
-                const { searchQuery } = this.state;
-                console.log('handling search', searchQuery);
+                if (isCurrentSearch) {
+                    return;
+                }
+
                 const { activeFilters, searchLocation } = this.props;
-                searchLocation(searchQuery);
+                searchLocation(placeId);
                 this.handleHistoryPush(activeFilters);
             }
         );
@@ -104,7 +110,7 @@ class SearchContainer extends React.Component {
 
     render() {
         const { activeFilters, eventTypes, map } = this.props;
-        const { searchQuery } = this.state;
+        const { searchQuery, shouldQuery } = this.state;
 
         return (
             <AsyncSearchView
@@ -114,6 +120,7 @@ class SearchContainer extends React.Component {
                 handleSearch={this.handleSearch}
                 map={map}
                 searchQuery={searchQuery}
+                shouldQuery={shouldQuery}
             />
         );
     }
@@ -122,7 +129,6 @@ class SearchContainer extends React.Component {
 const mapStateToProps = ({ search, home }) => ({
     activeFilters: search.activeFilters,
     chosenResult: search.chosenResult,
-    chosenLocation: search.chosenLocation,
     eventTypes: home.eventTypes,
     map: search.map,
     searchQuery: search.searchQuery,
