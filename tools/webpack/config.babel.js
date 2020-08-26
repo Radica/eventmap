@@ -18,7 +18,7 @@ if (!isDev) {
     dotenv.config();
 }
 
-const isStandalone = process.env.STANDALONE === 'true';
+const isStandalone = process.env.STANDALONE_CLIENT === 'true';
 
 // Setup the plugins for development/production
 const getPlugins = () => {
